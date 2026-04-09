@@ -65,6 +65,6 @@ hideMeta: true
 
 
 
-<p><a href="https://arxiv.org/abs/2104.11431">ArXiv link</a><br><a href="http://www.fleet.org.au/blog/star-attraction-magnetism-generated-in-2d-organic-material-by-star-like-arrangement-of-molecules/">FLEET blog</a></p>
+<p><a href="https://arxiv.org/abs/2104.11431">ArXiv link</a><br><a href="https://archive.fleet.org.au/blog/star-attraction-magnetism-generated-in-2d-organic-material-by-star-like-arrangement-of-molecules/">FLEET blog</a></p>
 </div>
 </div>
