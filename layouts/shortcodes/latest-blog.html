@@ -1,0 +1,7 @@
+{{- $blog := where site.RegularPages "Section" "eq" "blog" -}}
+{{- $sorted := sort $blog "Date" "desc" -}}
+{{- with index $sorted 0 -}}
+<p class="latest-blog"><strong>Latest:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="muted">({{ .Date.Format "Jan 2, 2006" }})</span></p>
+{{- else -}}
+<p class="latest-blog"><em>No blog posts yet.</em></p>
+{{- end -}}

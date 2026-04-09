@@ -1,0 +1,23 @@
+# Hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Executable
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local env
+.env
+.env.*

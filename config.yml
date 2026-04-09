@@ -1,0 +1,121 @@
+baseURL: "https://jhell.imipolex.biz"
+title: "Jack Hellerstedt"
+theme: PaperMod
+
+languageCode: en-us
+defaultContentLanguage: en
+
+enableRobotsTXT: true
+enableEmoji: true
+pygmentsUseClasses: true
+enableInlineShortcodes: true
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+mainsections: []
+
+pagination:
+  pagerSize: 10
+
+permalinks:
+  blog: "/blog/:year/:month/:slug/"
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+  section:
+    - HTML
+    - RSS
+  taxonomy:
+    - HTML
+    - RSS
+  term:
+    - HTML
+    - RSS
+
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 5
+    - name: Blog
+      url: /blog/
+      weight: 10
+    - name: Research
+      url: /research/
+      weight: 15
+    - name: About / CV
+      url: /about/
+      weight: 20
+    - name: Archive
+      url: /archives/
+      weight: 25
+    - name: Search
+      url: /search/
+      weight: 30
+    - name: RSS feeds
+      url: /feeds/
+      weight: 35
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+params:
+  env: production
+  description: "Research site for Jack Hellerstedt — scanning probe microscopy, metal-organic frameworks, and related work."
+  author: jhellerstedt
+
+  defaultTheme: auto
+  ShowShareButtons: false
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  ShowToc: true
+  ShowSearch: true
+
+  socialIcons:
+    - name: googlescholar
+      title: Google Scholar
+      url: "https://scholar.google.com/citations?user=O2bHzpgAAAAJ"
+    - name: other
+      title: ORCID
+      url: "https://orcid.org/0000-0003-2282-8223"
+    - name: other
+      title: Scopus
+      url: "https://www.scopus.com/authid/detail.uri?authorId=43761919700"
+    - name: github
+      title: GitHub
+      url: "https://github.com/jhellerstedt"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+services:
+  rss:
+    limit: 50
