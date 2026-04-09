@@ -1,0 +1,87 @@
+/* WordPress block-style mirror (Twenty Fifteen / Gutenberg-ish).
+   Apply to post/page content (not just special mirror templates). */
+.post-content .wp-block-columns,
+.wp-mirror .wp-block-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+}
+
+.post-content .wp-block-column,
+.wp-mirror .wp-block-column {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.post-content .wp-block-image img,
+.wp-mirror .wp-block-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ultimate Blocks content-toggle mirror */
+.post-content .wp-block-ub-content-toggle-accordion-title-wrap,
+.wp-mirror .wp-block-ub-content-toggle-accordion-title-wrap {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 2px;
+}
+
+.post-content .wp-block-ub-content-toggle-accordion-title-wrap:focus,
+.wp-mirror .wp-block-ub-content-toggle-accordion-title-wrap:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.post-content .wp-block-ub-content-toggle-accordion-content-wrap.ub-hide,
+.wp-mirror .wp-block-ub-content-toggle-accordion-content-wrap.ub-hide {
+  display: none !important;
+}
+
+.post-content .wp-block-ub-content-toggle-accordion,
+.wp-mirror .wp-block-ub-content-toggle-accordion {
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.wp-mirror iframe {
+  max-width: 100%;
+}
+
+/* Keep Altmetric badge + reference side-by-side.
+   JS adds .wp-altmetric-row to the appropriate Gutenberg columns. */
+.wp-block-columns.wp-altmetric-row {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.wp-block-columns.wp-altmetric-row > .wp-block-column[style*="flex-basis:10%"] {
+  flex: 0 0 64px !important;
+}
+
+.wp-block-columns.wp-altmetric-row > .wp-block-column[style*="flex-basis:90%"] {
+  flex: 1 1 auto !important;
+}
+
+/* On very narrow screens, allow stacking to avoid overflow. */
+@media (max-width: 420px) {
+  .wp-block-columns.wp-altmetric-row {
+    flex-wrap: wrap;
+  }
+}
+
+.wp-mirror-blog-index .site-main article,
+.wp-mirror-blog-index .hentry {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.wp-mirror-blog-index .site-main article:last-of-type {
+  border-bottom: none;
+}

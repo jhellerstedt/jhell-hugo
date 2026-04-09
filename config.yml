@@ -14,13 +14,13 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-mainsections: []
+mainsections: ["blog"]
 
 pagination:
   pagerSize: 10
 
 permalinks:
-  blog: "/blog/:year/:month/:slug/"
+  blog: "/:year/:month/:day/:slug/"
 
 minify:
   disableXML: true
@@ -45,24 +45,21 @@ menu:
     - name: Home
       url: /
       weight: 5
+    - name: about / cv
+      url: /about-cv/
+      weight: 10
     - name: Blog
       url: /blog/
-      weight: 10
-    - name: Research
-      url: /research/
       weight: 15
-    - name: About / CV
-      url: /about/
+    - name: research
+      url: /research/
       weight: 20
-    - name: Archive
-      url: /archives/
+    - name: RSS
+      url: /blog/index.xml
       weight: 25
-    - name: Search
-      url: /search/
-      weight: 30
-    - name: RSS feeds
+    - name: Feeds
       url: /feeds/
-      weight: 35
+      weight: 30
 
 taxonomies:
   category: categories
@@ -76,14 +73,14 @@ params:
 
   defaultTheme: auto
   ShowShareButtons: false
-  ShowReadingTime: true
+  ShowReadingTime: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowAllPagesInArchive: true
   ShowPageNums: true
-  ShowToc: true
+  ShowToc: false
 
   socialIcons:
     - name: googlescholar

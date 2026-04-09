@@ -1,54 +1,502 @@
 ---
-title: Research
-description: Overview of research themes and representative publications.
+title: "research"
+hideMeta: true
 ---
 
-## Optical brain pulse monitoring (OBPM)
+<div class="wp-block-ub-content-toggle wp-block-ub-content-toggle-block" id="ub-content-toggle-block-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" data-mobilecollapse="false" data-desktopcollapse="true" data-preventcollapse="false" data-showonlyone="false">
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-0-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Optical Brain Pulse Monitoring (OBPM)</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-0-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-Work on non-invasive optical sensing related to cerebral blood flow and pulse dynamics, including a review of device classes and clinical context.
+<p></p>
 
-- Review: [Medical Devices: Evidence and Research](https://doi.org/10.2147/MDER.S498589)
 
-## Intracranial pressure (ICP)
 
-Collaborations on intracranial pressure monitoring and related clinical engineering topics via Dove Medical Press outlets (2023–2024). See [Google Scholar](https://scholar.google.com/citations?user=O2bHzpgAAAAJ) for the full list of ICP-related articles.
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.2147/MDER.S49858"></div>
+</div>
 
-## Metal-organic frameworks (MOF)
 
-On-surface synthesis and electronic structure of 2D and kagome MOFs studied with STM/STS and supporting theory, including chirality, correlation effects, and phase behavior.
 
-Representative directions (2021–2025):
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Teo EJ, Petautschnig S, Chung SW, Hellerstedt J, Savage J, Dixon B. The Development of Non-Invasive Optical Brain Pulse Monitoring: A Review. <em>Med Devices (Auckl)</em>. 2024;17:491-511<br><a href="https://doi.org/10.2147/MDER.S498589">https://doi.org/10.2147/MDER.S498589</a></p>
+</div>
+</div>
 
-- Chiral 2D MOFs and EPWE modeling — [DOI](https://doi.org/10.1002/sstr.202500422)
-- Mott transition in a kagome MOF — [DOI](https://doi.org/10.1038/s41467-024-47766-8)
-- Kagome MOF strong correlations — [DOI](https://doi.org/10.1002/adfm.202106474)
-- Striped phases and on-surface reactivity — [DOI](https://doi.org/10.1021/jacs.2c10154)
 
-## Substrate–molecule effects and on-surface chemistry
 
-Studies of molecular self-assembly, bond activation, and interface hybridization on metals and 2D substrates, often combining SPM with spectroscopy.
+<p></p>
 
-> “There's plenty of room at the bottom.” — Richard Feynman, *Caltech Engineering and Science* (1960)
+</div>
+		</div>
 
-Highlights include concerted proton transfer in hydrogen-bonded chains ([ACS Nano 2021](https://doi.org/10.1021/acsnano.1c02572)), MgPc electronic structure ([Nanoscale Advances 2022](https://doi.org/10.1039/D2NA00385F)), and related surface chemistry through 2024.
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-1-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Intracranial Pressure (ICP)</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-1-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-## Topological Dirac semimetal Na₃Bi
+<p>Measurement of intracranial pressure is typically done via an invasive probe.</p>
 
-ARPES and transport-informed studies of three-dimensional Dirac fermions and field-tuned transitions, including high-mobility epitaxial films.
 
-- Electric-field-tuned topological phase transition — [Nature (2018)](https://doi.org/10.1038/s41586-018-0786-1)
-- Related ARPES and thin-film work — see publications list (2016–2021) on [Scholar](https://scholar.google.com/citations?user=O2bHzpgAAAAJ)
 
-## Topological insulator Bi₂Se₃
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.2147/MDER.S452938"></div>
+</div>
 
-Thesis-era work on molecular beam epitaxy of Bi₂Se₃, penetration depth measurements, and coupling to superconductivity — foundational training in topological materials growth and low-temperature transport.
 
-- Thickness and growth-condition dependence of the in-plane penetration depth — [Appl. Phys. Lett. (2014)](https://doi.org/10.1063/1.4867749)
-- Additional Bi₂Se₃ thin-film studies (2014) — see [Scholar profile](https://scholar.google.com/citations?user=O2bHzpgAAAAJ)
 
-## Instrumentation and software
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Cerebrovascular Responses in a Patient with Lundberg B Waves Following Subarachnoid Haemorrhage Assessed with a Novel Non-Invasive Brain Pulse Monitor: A Case Report<br><a href="https://www.dovepress.com/articles.php?article_id=90560">Dove Press (2024)</a></p>
+</div>
+</div>
 
-Tools for automated scanning probe experiments and image analysis:
 
-- **Scanbot** — STM automation via Nanonis TCP and grid scanning; [JOSS (2024)](https://doi.org/10.21105/joss.06028)
-- **Counting Molecules** — Python module using Zernike moments for molecular recognition in STM images; [SoftwareX (2022)](https://doi.org/10.1016/j.simpa.2022.100301)
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.2147/MDER.S398193"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Assessment of a Non-Invasive Brain Pulse Monitor to Measure Intra-Cranial Pressure Following Acute Brain Injury.&#8221;<br><a href="https://www.dovepress.com/articles.php?article_id=81203">Dove Press (2023)</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-2-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Metal-organic frameworks (MOF)</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-2-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<p>Self-assembly at the nanoscale means using the nearly limitless library of organic molecules as building blocks to ideally engineer the electronic phenomena that emerge from the periodic patterns they form.<br><br>One such example is our work attributing the Kondo effect we measured in a substrate supported metal-organic framework to a strongly correlated electron state existing in the MOF.</p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1002/sstr.202500422"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Tuning Interface Electronic Properties via Chiral Two-Dimensional Metal-Organic Frameworks (2025). Small Structures. <a href="https://doi.org/10.1002/sstr.202500422">https://doi.org/10.1002/sstr.202500422</a><br><a href="/2025/10/20/chirality-in-2d-metal-organic-framework/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41467-024-47766-8"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Lowe, B., Field, B., Hellerstedt, J. <em>et al.</em> Local gate control of Mott metal-insulator transition in a 2D metal-organic framework. <em>Nat Commun</em> <strong>15</strong>, 3559 (2024). <a href="https://doi.org/10.1038/s41467-024-47766-8">https://doi.org/10.1038/s41467-024-47766-8</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1002/adfm.202106474"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Manifestation of Strongly Correlated Electrons in a 2D Kagome Metal–Organic Framework&#8221;<br><a href="https://onlinelibrary.wiley.com/doi/10.1002/adfm.202106474">Adv. Func. Mater. (2021)</a><br><a href="/2021/09/13/kagome-metal-organic-framework/">blog post</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-3-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Substrate-molecule effects, on-surface chemistry</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-3-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>There&#8217;s plenty of room at the bottom</p>
+<cite><a href="https://en.wikipedia.org/wiki/There%27s_Plenty_of_Room_at_the_Bottom" target="_blank" rel="noreferrer noopener">Richard Feynman</a></cite></blockquote>
+
+
+
+<p>The invention of scanning tunneling microscopy and more recently, non-contact atomic force microscopy, has made the observation and manipulation of single atoms and molecules a routine exercise.<br><br>This work is at the intersection of chemistry &amp; physics, with diverse messages reflecting the high likelihood for observing unexpected results even with tightly controlled ingredients and experimental circumstances.</p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/acs.jpcc.3c06936"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Upper Bound Estimate of the Electronic Scattering Potential of a Weakly Interacting Molecular Film on a Metal&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jpcc.3c06936">JPCC (2024)</a><br></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1088/1361-6528/acba20"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Mesoscopic 2D molecular self-assembly on an insulator&#8221;<br><a href="https://iopscience.iop.org/article/10.1088/1361-6528/acba20">IOP Nanotechnology (2023)</a><br></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/jacs.2c10154"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Selective Activation of Aromatic C–H Bonds Catalyzed by Single Gold Atoms at Room Temperature.&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/jacs.2c10154">JACS (2022)</a><br><a href="/2022/11/20/striped-phase/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1039/D2NA00385F"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Direct observation of narrow electronic energy band formation in 2D molecular self-assembly.&#8221;<br><a href="https://doi.org/10.1039/D2NA00385F">Nanoscale Advances (2022)</a><br><a href="/blog/mgpc-arpes">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1002/smll.202005974"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Long-Range Surface-Assisted Molecule-Molecule Hybridization&#8221;<br><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202005974">Small (2021)</a><br><a href="/2021/02/13/mgpc-mgpc-hybridization/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/acsnano.1c02572"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Significance Of Nuclear Quantum Effects In Hydrogen Bonded Molecular Chains&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/acsnano.1c02572">ACS Nano (2021)</a><br><a href="/2021/05/26/concerted-proton-transfer/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1002/anie.201812334"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Aromatic Azide Transformation on the Ag(111) Surface Studied by Scanning Probe Microscopy&#8221;<br><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/anie.201812334">Angewandte (2019)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.3762/bjnano.10.30"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Nitrous oxide as an effective AFM tip functionalization: a comparative study&#8221;<br><a href="https://www.beilstein-journals.org/bjnano/articles/10/30">Beilstein J. Nanotechnol. (2019)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41467-018-05543-4"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Iron-based trinuclear metal-organic nanostructures on a surface with local charge accumulation&#8221;<br><a href="https://www.nature.com/articles/s41467-018-05543-4">Nature Communications (2018)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1039/C8NR04215B"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;On-surface structural and electronic properties of spontaneously formed Tb<sub>2</sub>Pc<sub>3</sub> single molecule magnets&#8221;<br><a href="https://pubs.rsc.org/en/content/articlelanding/2018/nr/c8nr04215b/unauth">RSC Nanoscale (2018)</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-4-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Topological Dirac Semimetal Na<sub>3</sub>Bi</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-4-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<p>We applied the methodology developed for Bi<sub>2</sub>Se<sub>3</sub> to the Dirac semimetal Na<sub>3</sub>Bi with remarkable success. These are materials where band inversion near the Fermi level creates Dirac-like &#8220;cones&#8221;, a 3d version of the dispersion that made graphene famous.<br><br>We demonstrated large-area thin-film growth, with control in the regime where we could electrostatically control the presence of a topological gap, experimental proof-of-concept to build a topological transistor.<br><br>We demonstrated the efficacy of MgF<sub>2</sub> as a stabilising capping layer, opening the door to possibilities for Na<sub>3</sub>Bi beyond just a UHV curiousity.</p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1002/adma.202005897"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Progress in Epitaxial Thin-Film Na<sub>3</sub>Bi as a Topological Electronic Material&#8221;<br><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/adma.202005897">Advanced Materials (2021)</a><br><a href="/2021/02/05/thin-film-dirac-semimetal-review-article/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/acsami.0c05832"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Quantum Transport in Air-Stable Na<sub>3</sub>Bi Thin Films&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/acsami.0c05832">ACS Appl. Mater. Interfaces (2020)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41586-018-0788-5"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Electric-field-tuned topological phase transition in ultrathin Na<sub>3</sub>Bi&#8221;<br><a href="https://www.nature.com/articles/s41586-018-0788-5">Nature (2018)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1103/PhysRevB.96.235412"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Temperature-dependent n−p transition in a three-dimensional Dirac semimetal Na<sub>3</sub>Bi thin film&#8221;<br><a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.235412">Phys. Rev. B (2017)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1126/sciadv.aao6661"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Spatial charge inhomogeneity and defect states in topological Dirac semimetal thin films of Na<sub>3</sub>Bi&#8221;<br><a href="https://www.science.org/doi/10.1126/sciadv.aao6661">Science Advances (2017)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1103/PhysRevMaterials.1.054203"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Electrostatic modulation of the electronic properties of Dirac semimetal Na<sub>3</sub>Bi thin films&#8221;<br><a href="https://journals.aps.org/prmaterials/abstract/10.1103/PhysRevMaterials.1.054203">Phys. Rev. Materials (2017)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/acsami.6b03312"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Molecular Doping the Topological Dirac Semimetal Na<sub>3</sub>Bi across the Charge Neutrality Point with F4-TCNQ&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/acsami.6b03312">ACS Appl. Mater. Interfaces (2016)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/acs.nanolett.6b00638"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Electronic Properties of High-Quality Epitaxial Topological Dirac Semimetal Thin Films&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/acs.nanolett.6b00638">Nano Lett. (2016)</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-5-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Topological Insulator Bi<sub>2</sub>Se<sub>3</sub></p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-5-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<p>My <a rel="noreferrer noopener" href="https://drum.lib.umd.edu/handle/1903/16588" target="_blank">thesis</a> research focussed on the seminal <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Topological_insulator" target="_blank">topological insulator</a> <a rel="noreferrer noopener" href="https://www.nature.com/articles/nphys1274" target="_blank">Bi<sub>2</sub>Se<sub>3</sub></a>. <br><br><a rel="noreferrer noopener" href="http://doi.org/10.1117/12.2033659" target="_blank">With the apparatus we developed</a> we were able to show that significant doping is present as soon as the TI is grown on substrate, before exposure to atmosphere. <br><br>We demonstrated that electron acceptor MoO<sub>3</sub> can mitigate this effect and stabilise the TI in atmosphere.</p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1063/1.4900749"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Thickness and growth-condition dependence of <em>in-situ</em> mobility and carrier density of epitaxial thin-film Bi<sub>2</sub>Se<sub>3</sub>&#8220;<br><a href="https://aip.scitation.org/doi/abs/10.1063/1.4900749">Appl. Phys. Lett. (2014)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/jp506089b"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Stability and Surface Reconstruction of Topological Insulator Bi<sub>2</sub>Se<sub>3</sub> on Exposure to Atmosphere&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/jp506089b">J. Phys. Chem. C (2014)</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1021/nn502031k"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>&#8220;Air-Stable Electron Depletion of Bi<sub>2</sub>Se<sub>3</sub> Using Molybdenum Trioxide into the Topological Regime&#8221;<br><a href="https://pubs.acs.org/doi/abs/10.1021/nn502031k">ACS Nano (2014)</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+
+<div class="wp-block-ub-content-toggle-accordion" style="border-color: #f1f1f1; " id="ub-content-toggle-panel-block-66392439-faaf-4f79-b485-92b7ef5ec2f0">
+			<div class="wp-block-ub-content-toggle-accordion-title-wrap" style="background-color: #f1f1f1;" aria-controls="ub-content-toggle-panel-6-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" tabindex="0">
+			<p class="wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d" style="color: #000000; ">Instrumentation &amp; Software</p>
+			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
+		</div>
+			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-6-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.21105/joss.06028"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Ceddia et al., (2024). Scanbot: An STM Automation Bot. Journal of Open Source Software, 9(99), 6028, <a href="https://doi.org/10.21105/joss.06028">https://doi.org/10.21105/joss.06028</a><br><a href="/2024/07/16/scanbot/">blog post</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
+<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.1016/j.simpa.2022.100301"></div>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
+<p>Hellerstedt, J., et. al. (2022). Counting Molecules: Python based scheme for automated enumeration and categorization of molecules in scanning tunneling microscopy images. <em>Software Impacts</em> <a href="https://doi.org/10.1016/j.simpa.2022.100301">https://doi.org/10.1016/j.simpa.2022.100301</a><br><a href="https://github.com/thennen/counting-molecules">github repo</a><br><a href="/2022/03/09/counting-molecules/">blog post</a></p>
+</div>
+</div>
+
+</div>
+		</div>
+</div>
