@@ -7,6 +7,24 @@ Personal academic site for **Jack Hellerstedt**, built with [Hugo](https://gohug
 - [Hugo](https://gohugo.io/installation/) **extended** is recommended; minimum version per PaperMod is **0.146.0**.
 - Git (for cloning and submodules).
 
+## GitHub repository
+
+Published as **[jhellerstedt/jhell-hugo](https://github.com/jhellerstedt/jhell-hugo)**. A local checkout can live in any folder (for example `jhell-website`).
+
+If the remote does not exist yet, create it and push:
+
+```bash
+gh auth login
+gh repo create jhellerstedt/jhell-hugo --public --source=. --remote=origin --push
+```
+
+Or add `origin` manually and push:
+
+```bash
+git remote add origin https://github.com/jhellerstedt/jhell-hugo.git
+git push -u origin master
+```
+
 ## Clone
 
 ```bash

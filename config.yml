@@ -84,7 +84,6 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-  ShowSearch: true
 
   socialIcons:
     - name: googlescholar
