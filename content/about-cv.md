@@ -164,7 +164,7 @@ hideMeta: true
 
 
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
-<p>&#8220;Direct observation of narrow electronic energy band formation in 2D molecular self-assembly.&#8221;<br><a href="https://doi.org/10.1039/D2NA00385F">Nanoscale Advances (2022)</a><br><a href="/blog/mgpc-arpes">blog post</a></p>
+<p>&#8220;Direct observation of narrow electronic energy band formation in 2D molecular self-assembly.&#8221;<br><a href="https://doi.org/10.1039/D2NA00385F">Nanoscale Advances (2022)</a><br><a href="/2022/08/18/mgpc-arpes/">blog post</a></p>
 </div>
 </div>
 
@@ -288,7 +288,7 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-3-a7311ffe-0e2b-4b67-9370-a5fe67949ca0">
 
-<p>Postdoctoral Research Fellow<br><a href="http://fuhrerlab.fleet.org.au/">Fuhrer lab</a></p>
+<p>Postdoctoral Research Fellow<br><a href="https://research.monash.edu/en/persons/michael-fuhrer/">Fuhrer lab</a></p>
 
 
 
@@ -482,7 +482,7 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-4-a7311ffe-0e2b-4b67-9370-a5fe67949ca0">
 
-<p><a href="http://fuhrerlab.fleet.org.au/">Fuhrer lab</a><br>6/2010 &#8211; 12/2012, University of Maryland, College Park<br>2/2013 &#8211; 5/2015, <meta charset="utf-8">School of Physics, Monash University</p>
+<p><a href="https://research.monash.edu/en/persons/michael-fuhrer/">Fuhrer lab</a><br>6/2010 &#8211; 12/2012, University of Maryland, College Park<br>2/2013 &#8211; 5/2015, <meta charset="utf-8">School of Physics, Monash University</p>
 
 
 
@@ -599,7 +599,7 @@ hideMeta: true
 
 
 <ul class="wp-block-list">
-<li>5/2025 Julian Ceddia (25% w/ Agustin Schiffrin; supervised until 8/22)<br><a href="https://bridges.monash.edu/articles/thesis/Engineering_and_Control_of_Two-Dimensional_Molecular_Nanoarchitectures_for_Future_Electronics/29069294/1">&#8220;Engineering and Control of Two-Dimensional Molecular Nanoarchitectures for Future Electronics&#8221;</a><br></li>
+<li>5/2025 <a href="https://julianceddia.com/">Julian Ceddia</a> (25% w/ Agustin Schiffrin; supervised until 8/22)<br><a href="https://bridges.monash.edu/articles/thesis/Engineering_and_Control_of_Two-Dimensional_Molecular_Nanoarchitectures_for_Future_Electronics/29069294/1">&#8220;Engineering and Control of Two-Dimensional Molecular Nanoarchitectures for Future Electronics&#8221;</a><br></li>
 
 
 

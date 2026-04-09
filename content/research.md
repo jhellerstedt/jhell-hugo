@@ -195,7 +195,7 @@ hideMeta: true
 
 
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:90%">
-<p>&#8220;Direct observation of narrow electronic energy band formation in 2D molecular self-assembly.&#8221;<br><a href="https://doi.org/10.1039/D2NA00385F">Nanoscale Advances (2022)</a><br><a href="/blog/mgpc-arpes">blog post</a></p>
+<p>&#8220;Direct observation of narrow electronic energy band formation in 2D molecular self-assembly.&#8221;<br><a href="https://doi.org/10.1039/D2NA00385F">Nanoscale Advances (2022)</a><br><a href="/2022/08/18/mgpc-arpes/">blog post</a></p>
 </div>
 </div>
 
