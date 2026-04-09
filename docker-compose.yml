@@ -1,0 +1,7 @@
+services:
+  jhell:
+    build: .
+    restart: unless-stopped
+    ports:
+      # Host nginx proxies here (matches previous WordPress upstream port if desired).
+      - "127.0.0.1:8090:80"

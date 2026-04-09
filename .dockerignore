@@ -1,0 +1,11 @@
+.git
+.github
+public
+resources
+.hugo_build.lock
+hugo_stats.json
+.DS_Store
+.env
+.env.*
+README.md
+linkcheck-report.md
