@@ -5,22 +5,15 @@
     {{- $files = $files | append . -}}
   {{- end -}}
 {{- end -}}
-<div class="llm-rss-list">
 {{- if gt (len $files) 0 -}}
-  {{- range $files -}}
+<ul class="rss-feed-list">
+  {{- range sort $files "Name" -}}
     {{- $href := printf "/rss/%s" .Name -}}
-    {{- $path := path.Join $dir .Name -}}
-    {{- $raw := readFile $path -}}
-    {{- $t := .Name -}}
-    {{- with findRE `<title>([^<]+)</title>` $raw 1 -}}
-      {{- $t = index . 0 | htmlUnescape | plainify -}}
-    {{- end -}}
-    <div class="llm-rss-item">
-      <h3>{{ $t }}</h3>
-      <p class="muted">Published file: <a href="{{ $href | relURL }}">{{ .Name }}</a></p>
-    </div>
+    {{- $stem := strings.TrimSuffix ".xml" .Name -}}
+    {{- $label := humanize (replace $stem "_" " ") -}}
+    <li><a href="{{ $href | relURL }}">{{ $label }}</a></li>
   {{- end -}}
+</ul>
 {{- else -}}
-  <p><em>No <code>*.xml</code> files in <code>static/rss</code> yet. Add llm-rss exports as XML to publish them under <code>/rss/</code>.</em></p>
+<p><em>No <code>*.xml</code> files in <code>static/rss</code> yet.</em></p>
 {{- end -}}
-</div>

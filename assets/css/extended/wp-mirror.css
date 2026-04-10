@@ -21,13 +21,23 @@
   height: auto;
 }
 
-/* Ultimate Blocks content-toggle mirror */
+/* Ultimate Blocks content-toggle mirror.
+   Inline WP export styles (#f1f1f1 / #000) are overridden so titles track PaperMod
+   html[data-theme] (light/dark toggle). */
 .post-content .wp-block-ub-content-toggle-accordion-title-wrap,
 .wp-mirror .wp-block-ub-content-toggle-accordion-title-wrap {
   cursor: pointer;
   user-select: none;
   padding: 0.5rem 0.75rem;
   border-radius: 2px;
+  background-color: var(--entry) !important;
+}
+
+.post-content .wp-block-ub-content-toggle-accordion-title,
+.post-content .wp-block-ub-content-toggle-accordion-toggle-wrap,
+.wp-mirror .wp-block-ub-content-toggle-accordion-title,
+.wp-mirror .wp-block-ub-content-toggle-accordion-toggle-wrap {
+  color: var(--primary) !important;
 }
 
 .post-content .wp-block-ub-content-toggle-accordion-title-wrap:focus,
@@ -44,7 +54,7 @@
 .post-content .wp-block-ub-content-toggle-accordion,
 .wp-mirror .wp-block-ub-content-toggle-accordion {
   margin-bottom: 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border) !important;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -73,6 +83,18 @@
   .wp-block-columns.wp-altmetric-row {
     flex-wrap: wrap;
   }
+}
+
+/* Altmetric embeds have no official dark-mode variant; tone down bright badge
+   backing on dark theme (embed.js injects img and sometimes iframe). */
+html[data-theme="dark"] .post-content .altmetric-embed img,
+html[data-theme="dark"] .wp-mirror .altmetric-embed img {
+  filter: brightness(0.88) contrast(1.08);
+}
+
+html[data-theme="dark"] .post-content .altmetric-embed iframe,
+html[data-theme="dark"] .wp-mirror .altmetric-embed iframe {
+  filter: brightness(0.88) contrast(1.08);
 }
 
 .wp-mirror-blog-index .site-main article,

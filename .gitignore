@@ -22,3 +22,5 @@ hugo.linux
 # Local env
 .env
 .env.*
+# Local RSS XML exports in static/rss/ (examples; regenerate from llm-rss or similar)
+static/rss/*.xml
