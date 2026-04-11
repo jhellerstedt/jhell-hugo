@@ -11,7 +11,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-0-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p></p>
+<p>Optical Pulse Monitoring (OPM) is an emerging non-invasive approach to measuring the mechanical pulsations of the brain that arise from the cardiac cycle. Unlike conventional intracranial monitoring which requires surgically implanted probes or catheters to measure <a href="https://en.wikipedia.org/wiki/Intracranial_pressure">intracranial pressure</a> (ICP) directly, OPM uses optical signals at the scalp to detect subtle volume changes in the underlying cerebrovascular system.</p>
+
+<p>The technique sits at the intersection of photonics, neuroscience, and clinical engineering, and holds promise for continuous, bedside-safe monitoring of patients at risk of raised ICP.</p>
 
 
 

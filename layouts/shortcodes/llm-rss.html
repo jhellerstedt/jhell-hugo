@@ -11,7 +11,60 @@
     {{- $href := printf "/rss/%s" .Name -}}
     {{- $stem := strings.TrimSuffix ".xml" .Name -}}
     {{- $label := humanize (replace $stem "_" " ") -}}
-    <li><a href="{{ $href | relURL }}">{{ $label }}</a></li>
+    {{- $path := printf "static/rss/%s" .Name -}}
+    {{- $raw := readFile $path -}}
+    {{- $itemMatches := findRESubmatch `<item>([\s\S]*?)</item>` $raw -}}
+    {{- $best := newScratch -}}
+    {{- $best.Set "rel" -1 -}}
+    {{- $best.Set "imp" -1 -}}
+    {{- $best.Set "title" "" -}}
+    {{- $best.Set "blurb" "" -}}
+    {{- range $itemMatches -}}
+      {{- $inner := index . 1 -}}
+      {{- $rel := 0 -}}
+      {{- $imp := 0 -}}
+      {{- with findRESubmatch `reply\.relevance=(\d+)` $inner -}}
+        {{- $rel = int (index (index . 0) 1) -}}
+      {{- end -}}
+      {{- with findRESubmatch `reply\.impact=(\d+)` $inner -}}
+        {{- $imp = int (index (index . 0) 1) -}}
+      {{- end -}}
+      {{- $title := "" -}}
+      {{- with findRESubmatch `<title>([\s\S]*?)</title>` $inner -}}
+        {{- $title = trim (htmlUnescape (index (index . 0) 1)) " \n\r\t" -}}
+      {{- end -}}
+      {{- $desc := "" -}}
+      {{- with findRESubmatch `<description>([\s\S]*?)</description>` $inner -}}
+        {{- $desc = htmlUnescape (index (index . 0) 1) -}}
+      {{- end -}}
+      {{- $blurb := replaceRE `\s*reply\.relevance=\d+\s+reply\.impact=\d+\s+` "" $desc -}}
+      {{- $blurb = trim $blurb " \n\r\t" -}}
+      {{- $blurb = plainify $blurb -}}
+      {{- $bestRel := $best.Get "rel" | int -}}
+      {{- $bestImp := $best.Get "imp" | int -}}
+      {{- $beat := or (gt $rel $bestRel) (and (eq $rel $bestRel) (gt $imp $bestImp)) -}}
+      {{- if $beat -}}
+        {{- $best.Set "rel" $rel -}}
+        {{- $best.Set "imp" $imp -}}
+        {{- $best.Set "title" $title -}}
+        {{- $best.Set "blurb" $blurb -}}
+      {{- end -}}
+    {{- end -}}
+    <li class="rss-feed-list__item">
+      <a href="{{ $href | relURL }}">{{ $label }}</a>
+      {{- $topTitle := $best.Get "title" -}}
+      {{- $topBlurb := $best.Get "blurb" -}}
+      {{- if or $topTitle $topBlurb -}}
+        <div class="rss-feed-summary">
+          {{- if $topTitle -}}
+            <p class="rss-feed-summary__title">{{ $topTitle }}</p>
+          {{- end -}}
+          {{- if $topBlurb -}}
+            <p class="rss-feed-summary__text">{{ truncate 320 $topBlurb }}</p>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    </li>
   {{- end -}}
 </ul>
 {{- else -}}
