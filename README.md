@@ -97,6 +97,13 @@ hugo --minify
 
 The repo ships **`data/papers.json`** with an empty `feeds` array so `hugo` runs without running the script first; the Feeds page then shows a short “no data” note until you regenerate.
 
+The same script writes **`content/rss-browser/<feed-id>.md`** (gitignored except **`_index.md`**) so each category has:
+
+- **`/rss-browser/<feed-id>/`** — scrollable, human-readable list of all papers in that feed (from `papers.json`).
+- **`/rss/<file>.xml`** — raw RSS, linked from `/feeds/` as “XML feed” for subscribers.
+
+Run **`python3 scripts/build_papers_data.py`** before `hugo` (or inside your Docker build context) so those stubs exist alongside `data/papers.json`.
+
 ## Theme
 
 PaperMod lives in `themes/PaperMod` as a **git submodule**. Update it with:

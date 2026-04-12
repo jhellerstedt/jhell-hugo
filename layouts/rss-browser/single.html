@@ -1,0 +1,58 @@
+{{- define "main" -}}
+{{- $page := . -}}
+<article class="post-single rss-browser-single">
+  <header class="post-header">
+    {{- partial "breadcrumbs.html" . -}}
+    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
+    {{- if .Description -}}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end -}}
+  </header>
+  <div class="post-content">
+    {{- with site.Data.papers -}}
+      {{- $id := $page.Params.feed_id | default $page.File.ContentBaseName -}}
+      {{- $match := first 1 (where .feeds "id" $id) -}}
+      {{- if not $match -}}
+        <p><em>This category is missing from <code>data/papers.json</code>. Run <code>python3 scripts/build_papers_data.py</code> and rebuild the site.</em></p>
+      {{- else -}}
+        {{- $feed := index $match 0 -}}
+        {{- $sub := "" -}}
+        {{- with $feed.rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+        {{- if and (not $sub) $feed.source -}}
+          {{- if strings.HasPrefix $feed.source "http" -}}{{- $sub = $feed.source -}}{{- end -}}
+        {{- end -}}
+        <p class="rss-browser-subscribe">
+          {{- if $sub -}}
+          <a href="{{ $sub | safeURL }}" rel="alternate" type="application/rss+xml">XML / RSS feed</a><span class="rss-browser-subscribe-hint"> — for news readers and subscription</span>
+          {{- else -}}
+          <span class="rss-browser-subscribe-hint">No subscription URL is available for this feed in the current build.</span>
+          {{- end -}}
+        </p>
+        <div class="paper-feed-scroll paper-feed-scroll--browser" tabindex="0">
+          {{- range $i, $item := $feed.items -}}
+          <section class="paper-feed-card" id="paper-{{ $i }}">
+            {{- with $item.title -}}
+            <h2 class="paper-feed-card__title">
+              {{- if $item.link -}}<a href="{{ $item.link | safeURL }}" rel="noopener noreferrer" target="_blank">{{ . }}</a>
+              {{- else -}}{{ . }}{{- end -}}
+            </h2>
+            {{- end -}}
+            {{- partial "papers/item-bibliography.html" $item -}}
+            {{- with $item.abstract -}}
+            <div class="paper-feed-card__abstract">
+              {{- range split . "\n\n" -}}
+              {{- $para := trim . " \n\t" -}}
+              {{- if $para -}}<p>{{ $para }}</p>{{ end -}}
+              {{- end -}}
+            </div>
+            {{- end -}}
+          </section>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    {{- else -}}
+      <p><em>No <code>data/papers.json</code> loaded.</em></p>
+    {{- end -}}
+  </div>
+</article>
+{{- end -}}

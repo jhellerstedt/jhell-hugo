@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Fetch or read curated RSS 2.0 feeds, parse item descriptions into structured
-fields, and write data/papers.json for Hugo (site.Data.papers).
+fields, write data/papers.json for Hugo (site.Data.papers), and refresh
+content/rss-browser/<id>.md stubs for human-readable /rss-browser/<id>/ pages.
 
 Configuration (in order of precedence for URL):
   - Environment variable PAPERS_FEED_URL
@@ -28,6 +29,7 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "data" / "papers.json"
+FEED_SLUG_RE = re.compile(r"^[a-zA-Z0-9_-]+$")
 
 RE_REL = re.compile(r"^reply\.relevance\s*=\s*(\d+)\s*$", re.I)
 RE_IMP = re.compile(r"^reply\.impact\s*=\s*(\d+)\s*$", re.I)
@@ -341,6 +343,48 @@ def build_feeds(
     return feeds
 
 
+def write_rss_browser_pages(feeds: list[dict[str, Any]], repo_root: Path) -> None:
+    """
+    One Hugo leaf page per feed under content/rss-browser/<id>.md so
+    /rss-browser/<id>/ can render a human-readable listing (see layouts/rss-browser/).
+    """
+    browser_dir = repo_root / "content" / "rss-browser"
+    browser_dir.mkdir(parents=True, exist_ok=True)
+
+    valid_ids: set[str] = set()
+    for feed in feeds:
+        fid = str(feed.get("id") or "")
+        if not FEED_SLUG_RE.match(fid):
+            print(f"Skipping rss-browser page for unsafe feed id {fid!r}", file=sys.stderr)
+            continue
+        valid_ids.add(fid)
+
+    for path in browser_dir.glob("*.md"):
+        if path.name == "_index.md":
+            continue
+        if path.stem not in valid_ids:
+            path.unlink()
+            print(f"Removed stale {path.relative_to(repo_root)}", file=sys.stderr)
+
+    for feed in feeds:
+        fid = str(feed.get("id") or "")
+        if not FEED_SLUG_RE.match(fid):
+            continue
+        title = (feed.get("channel_title") or "").strip() or fid.replace("_", " ").title()
+        title_yaml = json.dumps(title, ensure_ascii=False)
+        front = (
+            "---\n"
+            f"title: {title_yaml}\n"
+            'description: "All papers in this category (from the curated RSS export)."\n'
+            f"feed_id: {fid}\n"
+            "hideMeta: true\n"
+            "---\n\n"
+        )
+        (browser_dir / f"{fid}.md").write_text(front, encoding="utf-8")
+
+    print(f"Wrote {len(valid_ids)} page(s) under content/rss-browser/")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build data/papers.json for Hugo")
     parser.add_argument(
@@ -384,6 +428,7 @@ def main() -> int:
         f.write("\n")
 
     print(f"Wrote {len(feeds)} feed(s) to {args.output}")
+    write_rss_browser_pages(feeds, REPO_ROOT)
     return 0
 
 

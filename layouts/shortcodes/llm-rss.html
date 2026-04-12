@@ -4,16 +4,23 @@
 <ul class="rss-feed-list">
   {{- range sort $papers.feeds "id" -}}
     {{- $label := .channel_title -}}
-    {{- if not $label -}}
-      {{- $label = .id | replace "_" " " | humanize -}}
-    {{- end -}}
+    {{- if not $label }}{{ $label = .id | replace "_" " " }}{{ end -}}
+    {{- if not $label }}{{ $label = "Feed" }}{{ end -}}
     {{- $feat := .featured -}}
+    {{- $browse := printf "/rss-browser/%s/" .id | relURL -}}
+    {{- $sub := "" -}}
+    {{- with .rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+    {{- if and (not $sub) .source -}}
+      {{- if strings.HasPrefix .source "http" -}}{{- $sub = .source -}}{{- end -}}
+    {{- end -}}
     <li class="rss-feed-list__item">
-      {{- if .rss_href -}}
-        <a href="{{ .rss_href | relURL }}">{{ $label }}</a>
-      {{- else -}}
-        <span class="rss-feed-list__label">{{ $label }}</span>
-      {{- end -}}
+      <div class="rss-feed-list__head">
+        <a class="rss-feed-list__browse" href="{{ $browse }}">{{ $label }}</a>
+        {{- if $sub -}}
+        <span class="rss-feed-list__sep" aria-hidden="true">·</span>
+        <a class="rss-feed-list__xml" href="{{ $sub | safeURL }}" rel="alternate" type="application/rss+xml">XML feed</a>
+        {{- end -}}
+      </div>
       {{- with $feat -}}
         <div class="rss-feed-summary">
           {{- if .title -}}

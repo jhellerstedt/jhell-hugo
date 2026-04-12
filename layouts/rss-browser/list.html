@@ -1,0 +1,31 @@
+{{- define "main" -}}
+<article class="post-single rss-browser-list">
+  <header class="post-header">
+    {{- partial "breadcrumbs.html" . -}}
+    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
+    {{- if .Description -}}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end -}}
+  </header>
+  <div class="post-content">
+    {{- with site.Data.papers -}}
+    <ul class="rss-browser-index">
+      {{- range sort .feeds "id" -}}
+      {{- $label := .channel_title -}}
+      {{- if not $label }}{{ $label = .id | replace "_" " " }}{{ end -}}
+      {{- if not $label }}{{ $label = "Feed" }}{{ end -}}
+      <li>
+        <a href="{{ printf "/rss-browser/%s/" .id | relURL }}">{{ $label }}</a>
+        {{- with .rss_href -}}
+        <span class="rss-browser-index__sep">·</span>
+        <a href="{{ . | absURL }}" rel="alternate" type="application/rss+xml">XML feed</a>
+        {{- end -}}
+      </li>
+      {{- end -}}
+    </ul>
+    {{- else -}}
+    <p><em>No <code>data/papers.json</code> loaded.</em></p>
+    {{- end -}}
+  </div>
+</article>
+{{- end -}}

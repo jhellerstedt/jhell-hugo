@@ -1,36 +1,6 @@
 {{- $f := .featured -}}
 {{- if not $f -}}{{- return -}}{{- end -}}
-{{- if or $f.top_author_name $f.first_institution $f.last_institution -}}
-<dl class="papers-feed-meta">
-  {{- if and $f.top_author_name $f.top_author_h_index -}}
-  <div class="papers-feed-meta__row">
-    <dt>Highest h-index author</dt>
-    <dd>{{ $f.top_author_name }} (h-index {{ $f.top_author_h_index }})</dd>
-  </div>
-  {{- else if $f.top_author_name -}}
-  <div class="papers-feed-meta__row">
-    <dt>Highest h-index author</dt>
-    <dd>{{ $f.top_author_name }}</dd>
-  </div>
-  {{- end -}}
-  {{- $first := $f.first_institution -}}
-  {{- $last := $f.last_institution -}}
-  {{- if or $first $last -}}
-  <div class="papers-feed-meta__row">
-    <dt>Main affiliation</dt>
-    <dd>
-      {{- if and $first $last -}}
-        {{- if eq $first $last -}}{{ $first -}}
-        {{- else -}}{{ $first }} · {{ $last -}}
-        {{- end -}}
-      {{- else if $first -}}{{ $first -}}
-      {{- else -}}{{ $last -}}
-      {{- end -}}
-    </dd>
-  </div>
-  {{- end -}}
-</dl>
-{{- end -}}
+{{- partial "papers/item-bibliography.html" $f -}}
 {{- with $f.abstract -}}
 <p class="rss-feed-summary__text papers-feed-abstract">{{ truncate 320 . }}</p>
 {{- end -}}
