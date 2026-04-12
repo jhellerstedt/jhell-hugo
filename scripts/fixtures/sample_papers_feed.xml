@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fixture — papers metadata</title>
+    <link>https://example.invalid/feed</link>
+    <description>Two-item fixture for build_papers_data</description>
+    <item>
+      <title>Full metadata paper</title>
+      <link>https://example.invalid/papers/full</link>
+      <guid>https://example.invalid/papers/full</guid>
+      <pubDate>Mon, 01 Apr 2026 12:00:00 +0000</pubDate>
+      <description>reply.relevance=9
+reply.impact=8
+
+Highest h-index author on this paper: Jane Q. Researcher (h-index 42)
+First author institution: Massachusetts Institute of Technology
+Last author institution: Stanford University
+
+Abstract — We demonstrate structured parsing of curated RSS descriptions.
+Second line of abstract continues here.</description>
+    </item>
+    <item>
+      <title>Scores and abstract only</title>
+      <link>https://example.invalid/papers/minimal</link>
+      <guid>https://example.invalid/papers/minimal</guid>
+      <pubDate>Tue, 02 Apr 2026 12:00:00 +0000</pubDate>
+      <description>reply.relevance=4
+reply.impact=3
+
+Older-style item with no bibliographic block. This paragraph is the abstract.</description>
+    </item>
+    <item>
+      <title>Combined institution line</title>
+      <link>https://example.invalid/papers/combined</link>
+      <description>reply.relevance=7
+reply.impact=6
+
+Highest h-index author on this paper: A. B. Collaborator (h-index 19)
+Institution (first &amp; last author): University of Example &amp; Partners
+
+This abstract follows a combined affiliation line.</description>
+    </item>
+  </channel>
+</rss>

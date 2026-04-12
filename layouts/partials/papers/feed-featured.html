@@ -1,0 +1,51 @@
+{{- $f := .featured -}}
+{{- if not $f -}}{{- return -}}{{- end -}}
+<dl class="papers-feed-meta">
+  {{- with $f.relevance -}}
+  <div class="papers-feed-meta__row">
+    <dt>Relevance</dt>
+    <dd>{{ . }}</dd>
+  </div>
+  {{- end -}}
+  {{- with $f.impact -}}
+  <div class="papers-feed-meta__row">
+    <dt>Impact</dt>
+    <dd>{{ . }}</dd>
+  </div>
+  {{- end -}}
+  {{- if and $f.top_author_name $f.top_author_h_index -}}
+  <div class="papers-feed-meta__row">
+    <dt>Top author (h-index)</dt>
+    <dd>{{ $f.top_author_name }} (h-index {{ $f.top_author_h_index }})</dd>
+  </div>
+  {{- else if $f.top_author_name -}}
+  <div class="papers-feed-meta__row">
+    <dt>Top author (h-index)</dt>
+    <dd>{{ $f.top_author_name }}</dd>
+  </div>
+  {{- end -}}
+  {{- if $f.single_institution -}}
+    {{- with $f.first_institution -}}
+    <div class="papers-feed-meta__row">
+      <dt>Institution (first &amp; last author)</dt>
+      <dd>{{ . }}</dd>
+    </div>
+    {{- end -}}
+  {{- else -}}
+    {{- with $f.first_institution -}}
+    <div class="papers-feed-meta__row">
+      <dt>First author affiliation</dt>
+      <dd>{{ . }}</dd>
+    </div>
+    {{- end -}}
+    {{- with $f.last_institution -}}
+    <div class="papers-feed-meta__row">
+      <dt>Last author affiliation</dt>
+      <dd>{{ . }}</dd>
+    </div>
+    {{- end -}}
+  {{- end -}}
+</dl>
+{{- with $f.abstract -}}
+<p class="rss-feed-summary__text papers-feed-abstract">{{ truncate 320 . }}</p>
+{{- end -}}

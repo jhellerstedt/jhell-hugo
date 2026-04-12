@@ -59,17 +59,43 @@ Static output is written to `public/`. Minification is also enabled in `config.y
 After a build, sync `public/` to the directory nginx serves (adjust user, host, and path):
 
 ```bash
+python3 scripts/build_papers_data.py
 hugo --minify
 rsync -avz --delete public/ user@server:/var/www/jhell.imipolex.biz/html/
 ```
 
 Use SSH keys, a deploy user with write access only to that tree, and reload or let nginx pick up new files. Configure TLS at the reverse proxy as usual.
 
-## LLM / RSS XML feeds in `static/rss/`
+## Curated paper RSS → `/feeds/`
 
-Optional XML exports (for example from an **llm-rss** workflow or other tooling) can be dropped into `static/rss/` as `*.xml`. They are published at **`/rss/<filename>.xml`** on the live site.
+Optional RSS 2.0 exports (for example from an **llm-rss** workflow) can be dropped into **`static/rss/*.xml`**. They are copied to **`/rss/<filename>.xml`** on the built site.
 
-The **LLM RSS feeds** page (`/feeds/`) uses the `llm-rss` shortcode to list those files and show each file’s first `<title>` when present. Replace `static/rss/example-llm-export.xml` with your real exports when ready.
+The **Feeds** page (`/feeds/`) uses the `llm-rss` shortcode, which reads structured data from **`data/papers.json`**. That file is generated before `hugo` by a small Python script that parses each item’s `<description>` (scores, optional bibliographic lines, abstract).
+
+### Configure the feed source
+
+In **`config.yml`**, under `params.papersFeed`:
+
+- **`url`** — If non-empty, the build script fetches this RSS URL once and writes a single feed entry (no `/rss/…` link row; article links still work).
+- **`localDir`** — If `url` is empty, the script reads every `*.xml` in this directory (default `static/rss`).
+
+Environment overrides (useful in CI): **`PAPERS_FEED_URL`**, **`PAPERS_FEED_DIR`**.
+
+### Build commands
+
+```bash
+# Normal: merge all static/rss/*.xml (or fetch url if set), then Hugo
+python3 scripts/build_papers_data.py
+hugo --minify
+```
+
+```bash
+# Quick check with bundled fixtures (full metadata + legacy + combined affiliation)
+python3 scripts/build_papers_data.py --fixtures
+hugo --minify
+```
+
+The repo ships **`data/papers.json`** with an empty `feeds` array so `hugo` runs without running the script first; the Feeds page then shows a short “no data” note until you regenerate.
 
 ## Theme
 

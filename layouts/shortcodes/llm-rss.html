@@ -1,85 +1,35 @@
-{{- $dir := "static/rss" -}}
-{{- $files := slice -}}
-{{- range readDir $dir -}}
-  {{- if and (not .IsDir) (strings.HasSuffix (lower .Name) ".xml") -}}
-    {{- $files = $files | append . -}}
-  {{- end -}}
-{{- end -}}
-{{- if gt (len $files) 0 -}}
+{{- $papers := hugo.Data.papers -}}
+{{- if and $papers (gt (len $papers.feeds) 0) -}}
 <ul class="rss-feed-list">
-  {{- range sort $files "Name" -}}
-    {{- $href := printf "/rss/%s" .Name -}}
-    {{- $stem := strings.TrimSuffix ".xml" .Name -}}
-    {{- $label := humanize (replace $stem "_" " ") -}}
-    {{- $path := printf "static/rss/%s" .Name -}}
-    {{- $raw := readFile $path -}}
-    {{- $itemMatches := findRESubmatch `<item>([\s\S]*?)</item>` $raw -}}
-    {{- $best := newScratch -}}
-    {{- $best.Set "rel" -1 -}}
-    {{- $best.Set "imp" -1 -}}
-    {{- $best.Set "title" "" -}}
-    {{- $best.Set "blurb" "" -}}
-    {{- $best.Set "articleURL" "" -}}
-    {{- range $itemMatches -}}
-      {{- $inner := index . 1 -}}
-      {{- $rel := 0 -}}
-      {{- $imp := 0 -}}
-      {{- with findRESubmatch `reply\.relevance=(\d+)` $inner -}}
-        {{- $rel = int (index (index . 0) 1) -}}
-      {{- end -}}
-      {{- with findRESubmatch `reply\.impact=(\d+)` $inner -}}
-        {{- $imp = int (index (index . 0) 1) -}}
-      {{- end -}}
-      {{- $title := "" -}}
-      {{- with findRESubmatch `<title>([\s\S]*?)</title>` $inner -}}
-        {{- $title = trim (htmlUnescape (index (index . 0) 1)) " \n\r\t" -}}
-      {{- end -}}
-      {{- $link := "" -}}
-      {{- with findRESubmatch `<link>([\s\S]*?)</link>` $inner -}}
-        {{- $link = trim (htmlUnescape (index (index . 0) 1)) " \n\r\t" -}}
-      {{- end -}}
-      {{- $desc := "" -}}
-      {{- with findRESubmatch `<description>([\s\S]*?)</description>` $inner -}}
-        {{- $desc = htmlUnescape (index (index . 0) 1) -}}
-      {{- end -}}
-      {{- $blurb := replaceRE `\s*reply\.relevance=\d+\s+reply\.impact=\d+\s+` "" $desc -}}
-      {{- $blurb = trim $blurb " \n\r\t" -}}
-      {{- $blurb = plainify $blurb -}}
-      {{- $bestRel := $best.Get "rel" | int -}}
-      {{- $bestImp := $best.Get "imp" | int -}}
-      {{- $beat := or (gt $rel $bestRel) (and (eq $rel $bestRel) (gt $imp $bestImp)) -}}
-      {{- if $beat -}}
-        {{- $best.Set "rel" $rel -}}
-        {{- $best.Set "imp" $imp -}}
-        {{- $best.Set "title" $title -}}
-        {{- $best.Set "blurb" $blurb -}}
-        {{- $best.Set "articleURL" $link -}}
-      {{- end -}}
+  {{- range sort $papers.feeds "id" -}}
+    {{- $label := .channel_title -}}
+    {{- if not $label -}}
+      {{- $label = .id | replace "_" " " | humanize -}}
     {{- end -}}
+    {{- $feat := .featured -}}
     <li class="rss-feed-list__item">
-      <a href="{{ $href | relURL }}">{{ $label }}</a>
-      {{- $topTitle := $best.Get "title" -}}
-      {{- $topBlurb := $best.Get "blurb" -}}
-      {{- $topArticleURL := $best.Get "articleURL" -}}
-      {{- if or $topTitle $topBlurb -}}
+      {{- if .rss_href -}}
+        <a href="{{ .rss_href | relURL }}">{{ $label }}</a>
+      {{- else -}}
+        <span class="rss-feed-list__label">{{ $label }}</span>
+      {{- end -}}
+      {{- with $feat -}}
         <div class="rss-feed-summary">
-          {{- if $topTitle -}}
+          {{- if .title -}}
             <p class="rss-feed-summary__title">
-              {{- if $topArticleURL -}}
-                <a href="{{ $topArticleURL | safeURL }}" rel="noopener noreferrer" target="_blank">{{ $topTitle }}</a>
+              {{- if .link -}}
+                <a href="{{ .link | safeURL }}" rel="noopener noreferrer" target="_blank">{{ .title }}</a>
               {{- else -}}
-                {{ $topTitle }}
+                {{ .title }}
               {{- end -}}
             </p>
           {{- end -}}
-          {{- if $topBlurb -}}
-            <p class="rss-feed-summary__text">{{ truncate 320 $topBlurb }}</p>
-          {{- end -}}
+          {{- partial "papers/feed-featured.html" (dict "featured" .) -}}
         </div>
       {{- end -}}
     </li>
   {{- end -}}
 </ul>
 {{- else -}}
-<p><em>No <code>*.xml</code> files in <code>static/rss</code> yet.</em></p>
+<p class="papers-feed-empty"><em>No curated papers data yet. Run <code>python3 scripts/build_papers_data.py</code> (or <code>--fixtures</code> for a sample), then rebuild with Hugo. XML files belong in <code>static/rss/</code> unless you set <code>params.papersFeed.url</code> or <code>PAPERS_FEED_URL</code>.</em></p>
 {{- end -}}

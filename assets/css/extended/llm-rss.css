@@ -12,6 +12,44 @@
   font-weight: 500;
 }
 
+.rss-feed-list__label {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.papers-feed-empty {
+  margin: 0.5rem 0;
+}
+
+.papers-feed-meta {
+  margin: 0.35rem 0 0.25rem;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem 1rem;
+  grid-template-columns: auto 1fr;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.papers-feed-meta__row {
+  display: contents;
+}
+
+.papers-feed-meta dt {
+  margin: 0;
+  font-weight: 500;
+  color: var(--content);
+}
+
+.papers-feed-meta dd {
+  margin: 0;
+}
+
+.papers-feed-abstract {
+  margin-top: 0.35rem;
+}
+
 .rss-feed-summary {
   margin: 0.35rem 0 0;
   padding-left: 0.15rem;
