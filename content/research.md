@@ -483,6 +483,12 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-6-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
+<p>Advances in surface-science experiments increasingly depend on purpose-built software to automate tedious or time-sensitive measurement tasks and to extract quantitative information from large image datasets. The two software contributions in this category address both needs in the context of <a href="https://en.wikipedia.org/wiki/Scanning_tunneling_microscope">scanning tunneling microscopy</a> (STM): one automates the instrument itself, the other automates the analysis of the images it produces. Both tools are published as open-source software with accompanying peer-reviewed papers, making them citable, reproducible, and reusable by the broader surface-science community.</p>
+
+<p>Scanbot (Ceddia et al., <em>Journal of Open Source Software</em>, 2024) is an STM automation bot that handles routine but demanding tasks, namely tip conditioning, sample navigation, and spectroscopy acquisition, without continuous human supervision, dramatically increasing experimental throughput. The companion tool, <em>Counting Molecules</em> (Hellerstedt et al., <em>Software Impacts</em>, 2022), provides a Python-based pipeline for the automated enumeration and categorisation of individual molecules in STM images, replacing laborious manual counting with a reproducible algorithmic approach. Together these tools represent a step toward fully automated STM workflows, from data acquisition through to quantitative analysis.</p>
+
+
+
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">
 <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script><div class="altmetric-embed" data-badge-type="donut" data-doi="10.21105/joss.06028"></div>
