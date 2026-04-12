@@ -82,7 +82,7 @@
   font-size: var(--paper-item-desc-size);
 }
 
-.rss-browser-single .post-title {
+article.rss-browser-single h1.post-title {
   font-size: calc(var(--paper-item-desc-size) + 3pt);
   line-height: 1.35;
 }
@@ -123,6 +123,14 @@
   font-size: calc(var(--paper-item-desc-size, 0.88rem) + 3pt);
   line-height: 1.35;
   font-weight: 600;
+}
+
+/* PaperMod .post-content h2 { font-size: 32px } wins over .paper-feed-card__title alone */
+article.rss-browser-single .post-content h2.paper-feed-card__title {
+  font-size: calc(var(--paper-item-desc-size, 0.88rem) + 3pt);
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
 }
 
 .paper-feed-card__title a {
