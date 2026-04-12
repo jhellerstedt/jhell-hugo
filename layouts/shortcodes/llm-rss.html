@@ -19,6 +19,7 @@
     {{- $best.Set "imp" -1 -}}
     {{- $best.Set "title" "" -}}
     {{- $best.Set "blurb" "" -}}
+    {{- $best.Set "articleURL" "" -}}
     {{- range $itemMatches -}}
       {{- $inner := index . 1 -}}
       {{- $rel := 0 -}}
@@ -32,6 +33,10 @@
       {{- $title := "" -}}
       {{- with findRESubmatch `<title>([\s\S]*?)</title>` $inner -}}
         {{- $title = trim (htmlUnescape (index (index . 0) 1)) " \n\r\t" -}}
+      {{- end -}}
+      {{- $link := "" -}}
+      {{- with findRESubmatch `<link>([\s\S]*?)</link>` $inner -}}
+        {{- $link = trim (htmlUnescape (index (index . 0) 1)) " \n\r\t" -}}
       {{- end -}}
       {{- $desc := "" -}}
       {{- with findRESubmatch `<description>([\s\S]*?)</description>` $inner -}}
@@ -48,16 +53,24 @@
         {{- $best.Set "imp" $imp -}}
         {{- $best.Set "title" $title -}}
         {{- $best.Set "blurb" $blurb -}}
+        {{- $best.Set "articleURL" $link -}}
       {{- end -}}
     {{- end -}}
     <li class="rss-feed-list__item">
       <a href="{{ $href | relURL }}">{{ $label }}</a>
       {{- $topTitle := $best.Get "title" -}}
       {{- $topBlurb := $best.Get "blurb" -}}
+      {{- $topArticleURL := $best.Get "articleURL" -}}
       {{- if or $topTitle $topBlurb -}}
         <div class="rss-feed-summary">
           {{- if $topTitle -}}
-            <p class="rss-feed-summary__title">{{ $topTitle }}</p>
+            <p class="rss-feed-summary__title">
+              {{- if $topArticleURL -}}
+                <a href="{{ $topArticleURL | safeURL }}" rel="noopener noreferrer" target="_blank">{{ $topTitle }}</a>
+              {{- else -}}
+                {{ $topTitle }}
+              {{- end -}}
+            </p>
           {{- end -}}
           {{- if $topBlurb -}}
             <p class="rss-feed-summary__text">{{ truncate 320 $topBlurb }}</p>

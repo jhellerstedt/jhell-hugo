@@ -25,6 +25,17 @@
   color: var(--primary);
 }
 
+.rss-feed-summary__title a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-underline-offset: 0.12em;
+}
+
+.rss-feed-summary__title a:hover {
+  text-decoration-color: var(--primary);
+}
+
 .rss-feed-summary__text {
   margin: 0;
   font-size: 0.88em;
