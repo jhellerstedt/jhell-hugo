@@ -3,9 +3,7 @@
 {{- if and $papers (gt (len $papers.feeds) 0) -}}
 <ul class="rss-feed-list">
   {{- range sort $papers.feeds "id" -}}
-    {{- $label := .channel_title -}}
-    {{- if not $label }}{{ $label = .id | replace "_" " " }}{{ end -}}
-    {{- if not $label }}{{ $label = "Feed" }}{{ end -}}
+    {{- $label := strings.TrimSpace (partial "papers/feed-label.html" .) -}}
     {{- $feat := .featured -}}
     {{- $browse := printf "/rss-browser/%s/" .id | relURL -}}
     {{- $sub := "" -}}

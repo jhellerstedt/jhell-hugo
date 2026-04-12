@@ -30,6 +30,23 @@ from typing import Any
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "data" / "papers.json"
 FEED_SLUG_RE = re.compile(r"^[a-zA-Z0-9_-]+$")
+FILTERED_RSS_PREFIX = re.compile(
+    r"^\s*filtered\s+rss\s*[-–—:]\s*(.+)\s*$",
+    re.IGNORECASE,
+)
+
+
+def feed_display_title(channel_title: str | None, feed_id: str) -> str:
+    """
+    UI label: drop 'Filtered RSS —' prefix, underscores → spaces, title-case words.
+    """
+    raw = (channel_title or "").strip() or (feed_id or "").strip()
+    m = FILTERED_RSS_PREFIX.match(raw)
+    if m:
+        raw = m.group(1).strip()
+    raw = re.sub(r"_+", " ", raw)
+    raw = re.sub(r"\s+", " ", raw).strip()
+    return raw.title() if raw else "Feed"
 
 RE_REL = re.compile(r"^reply\.relevance\s*=\s*(\d+)\s*$", re.I)
 RE_IMP = re.compile(r"^reply\.impact\s*=\s*(\d+)\s*$", re.I)
@@ -212,10 +229,12 @@ def parse_rss_bytes(
     fid = feed_id or (
         slugify(channel_title) if channel_title else slugify(source)
     )
+    display_title = feed_display_title(channel_title, fid)
 
     return {
         "id": fid,
         "channel_title": channel_title,
+        "display_title": display_title,
         "source": source,
         "rss_href": rss_href,
         "items": items_out,
@@ -370,7 +389,7 @@ def write_rss_browser_pages(feeds: list[dict[str, Any]], repo_root: Path) -> Non
         fid = str(feed.get("id") or "")
         if not FEED_SLUG_RE.match(fid):
             continue
-        title = (feed.get("channel_title") or "").strip() or fid.replace("_", " ").title()
+        title = feed_display_title(feed.get("channel_title"), fid)
         title_yaml = json.dumps(title, ensure_ascii=False)
         front = (
             "---\n"

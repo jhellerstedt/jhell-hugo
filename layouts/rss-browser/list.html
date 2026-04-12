@@ -11,9 +11,7 @@
     {{- with site.Data.papers -}}
     <ul class="rss-browser-index">
       {{- range sort .feeds "id" -}}
-      {{- $label := .channel_title -}}
-      {{- if not $label }}{{ $label = .id | replace "_" " " }}{{ end -}}
-      {{- if not $label }}{{ $label = "Feed" }}{{ end -}}
+      {{- $label := strings.TrimSpace (partial "papers/feed-label.html" .) -}}
       <li>
         <a href="{{ printf "/rss-browser/%s/" .id | relURL }}">{{ $label }}</a>
         {{- with .rss_href -}}
