@@ -1,21 +1,32 @@
 {{- define "main" -}}
 {{- $page := . -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "heading" $page.Title -}}
+{{- with site.Data.papers -}}
+  {{- $id := $page.Params.feed_id | default $page.File.ContentBaseName -}}
+  {{- $match := first 1 (where .feeds "id" $id) -}}
+  {{- if $match -}}
+    {{- $feed := index $match 0 -}}
+    {{- $scratch.Set "feed" $feed -}}
+    {{- $scratch.Set "heading" (strings.TrimSpace (partial "papers/feed-label.html" $feed)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $heading := $scratch.Get "heading" -}}
+{{- $feed := $scratch.Get "feed" -}}
 <article class="post-single rss-browser-single">
   <header class="post-header">
-    {{- partial "breadcrumbs.html" . -}}
-    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
-    {{- if .Description -}}
-    <div class="post-description">{{ .Description }}</div>
+    {{- partial "breadcrumbs.html" $page -}}
+    <h1 class="post-title entry-hint-parent">{{ $heading }}</h1>
+    {{- with $page.Description -}}
+    <div class="post-description">{{ . }}</div>
     {{- end -}}
   </header>
   <div class="post-content">
-    {{- with site.Data.papers -}}
-      {{- $id := $page.Params.feed_id | default $page.File.ContentBaseName -}}
-      {{- $match := first 1 (where .feeds "id" $id) -}}
-      {{- if not $match -}}
-        <p><em>This category is missing from <code>data/papers.json</code>. Run <code>python3 scripts/build_papers_data.py</code> and rebuild the site.</em></p>
-      {{- else -}}
-        {{- $feed := index $match 0 -}}
+    {{- if not site.Data.papers -}}
+      <p><em>No <code>data/papers.json</code> loaded.</em></p>
+    {{- else if not $feed -}}
+      <p><em>This category is missing from <code>data/papers.json</code>. Run <code>python3 scripts/build_papers_data.py</code> and rebuild the site.</em></p>
+    {{- else -}}
         {{- $sub := "" -}}
         {{- with $feed.rss_href -}}{{- $sub = absURL . -}}{{- end -}}
         {{- if and (not $sub) $feed.source -}}
@@ -49,9 +60,6 @@
           </section>
           {{- end -}}
         </div>
-      {{- end -}}
-    {{- else -}}
-      <p><em>No <code>data/papers.json</code> loaded.</em></p>
     {{- end -}}
   </div>
 </article>
