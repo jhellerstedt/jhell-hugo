@@ -43,7 +43,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-1-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>Measurement of intracranial pressure is typically done via an invasive probe.</p>
+<p><a href="https://en.wikipedia.org/wiki/Intracranial_pressure">Intracranial pressure</a> (ICP) is the pressure exerted by cerebrospinal fluid and brain tissue within the skull, normally 7–15 mmHg in a supine adult. Sustained elevation above roughly 20–25 mmHg is associated with serious neurological injury, yet the gold-standard measurement method — inserting a pressure transducer or external ventricular drain directly into the brain — carries significant procedural risk. Developing reliable non-invasive alternatives is therefore a major clinical priority, particularly for patients who have suffered acute brain injury or subarachnoid haemorrhage.</p>
+
+<p>The two case reports in this category apply a novel non-invasive brain pulse monitor to exactly these high-stakes scenarios. The 2023 Dove Press paper assesses the device&#8217;s ability to track ICP following acute brain injury, while the 2024 paper examines cerebrovascular responses, specifically Lundberg B waves, a recognised marker of impaired cerebrovascular autoregulation, in a patient recovering from subarachnoid haemorrhage. Together they provide early clinical evidence that optical brain pulse signals can capture haemodynamically meaningful ICP dynamics without the risks of invasive instrumentation.</p>
 
 
 
@@ -83,7 +85,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-2-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>Self-assembly at the nanoscale means using the nearly limitless library of organic molecules as building blocks to ideally engineer the electronic phenomena that emerge from the periodic patterns they form.<br><br>One such example is our work attributing the Kondo effect we measured in a substrate supported metal-organic framework to a strongly correlated electron state existing in the MOF.</p>
+<p><a href="https://en.wikipedia.org/wiki/Metal-organic_framework">Metal-organic frameworks</a> (MOFs) are a class of coordination polymers in which metal ion clusters are linked by organic ligand &#8220;struts&#8221; to form highly ordered one-, two-, or three-dimensional porous structures. At the nanoscale, the nearly limitless combinatorial library of organic building blocks makes MOFs an attractive platform for engineering emergent electronic phenomena: by choosing the right metal centre and ligand geometry, researchers can in principle dial in specific band structures, magnetic interactions, or correlated-electron states. Two-dimensional MOFs grown on surfaces are particularly compelling because they can be interrogated and gated with scanning probe and electrostatic techniques unavailable to bulk crystals.</p>
+
+<p>This body of work spans three publications that progressively deepen the understanding of electronic correlations in 2D MOFs. The 2021 <em>Advanced Functional Materials</em> paper identifies a manifestation of strongly correlated electrons in a 2D kagome-lattice MOF, attributing a measured Kondo resonance to the correlated electron state of the framework itself. The 2024 <em>Nature Communications</em> paper by Lowe, Field, Hellerstedt et al. demonstrates local electrostatic gate control of a Mott metal-insulator transition in a 2D MOF, a landmark result showing that the correlated insulating state can be switched on and off with a gate voltage. Most recently, the 2025 <em>Small Structures</em> paper explores how chirality at the MOF&#8211;substrate interface can be used to tune interfacial electronic properties, opening a further design axis for functional 2D MOF devices.</p>
 
 
 
