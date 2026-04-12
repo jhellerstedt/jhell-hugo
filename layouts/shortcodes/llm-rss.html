@@ -1,4 +1,5 @@
-{{- $papers := hugo.Data.papers -}}
+{{- /* hugo.Data exists from v0.156; site.Data keeps builds working on older Hugo (e.g. peaceiris/hugo:0.146). */ -}}
+{{- $papers := site.Data.papers -}}
 {{- if and $papers (gt (len $papers.feeds) 0) -}}
 <ul class="rss-feed-list">
   {{- range sort $papers.feeds "id" -}}
