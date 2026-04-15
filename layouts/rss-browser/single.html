@@ -72,10 +72,15 @@
             </figure>
             {{- end -}}
             {{- with $item.abstract -}}
+            {{- $abs := trim . " \n\t" -}}
             <div class="paper-feed-card__abstract">
-              {{- range split . "\n\n" -}}
-              {{- $para := trim . " \n\t" -}}
-              {{- if $para -}}<p>{{ $para }}</p>{{ end -}}
+              {{- if strings.HasPrefix $abs "<" -}}
+                {{- $abs | safeHTML -}}
+              {{- else -}}
+                {{- range split . "\n\n" -}}
+                {{- $para := trim . " \n\t" -}}
+                {{- if $para -}}<p>{{ $para }}</p>{{ end -}}
+                {{- end -}}
               {{- end -}}
             </div>
             {{- end -}}

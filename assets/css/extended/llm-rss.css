@@ -175,6 +175,13 @@ article.rss-browser-single .post-content h2.paper-feed-card__title {
   margin-top: 0;
 }
 
+.paper-feed-card__abstract img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.35rem 0 0;
+}
+
 .rss-browser-index {
   list-style: disc;
   padding-left: 1.25rem;
