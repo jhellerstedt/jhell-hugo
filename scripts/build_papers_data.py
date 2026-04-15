@@ -34,6 +34,13 @@ FILTERED_RSS_PREFIX = re.compile(
     r"^\s*filtered\s+rss\s*[-–—:]\s*(.+)\s*$",
     re.IGNORECASE,
 )
+ARXIV_ABS_RE = re.compile(r"^https?://arxiv\.org/abs/([^/?#]+)")
+OG_IMAGE_RE = re.compile(
+    r'(?is)<meta\s+[^>]*property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']'
+)
+TW_IMAGE_RE = re.compile(
+    r'(?is)<meta\s+[^>]*name=["\']twitter:image["\'][^>]*content=["\']([^"\']+)["\']'
+)
 
 
 def feed_display_title(channel_title: str | None, feed_id: str) -> str:
@@ -164,6 +171,92 @@ def pick_featured(items: list[dict[str, Any]]) -> dict[str, Any] | None:
         return None
     return max(items, key=item_score)
 
+def _get_env_int(name: str, default: int) -> int:
+    v = (os.environ.get(name) or "").strip()
+    if not v:
+        return default
+    try:
+        return int(v)
+    except ValueError:
+        return default
+
+
+def _fetch_text(url: str, timeout_s: int = 20) -> str:
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "jhell-hugo-papers-build/1.0"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+        raw = resp.read()
+    # Best-effort decode; HTML/xml from these sources is generally UTF-8.
+    return raw.decode("utf-8", errors="replace")
+
+
+def enrich_arxiv_authors(item: dict[str, Any], cache: dict[str, tuple[str, str, list[str]]]) -> None:
+    """
+    Populate first_author / last_author / authors[] for arxiv.org/abs/<id> links.
+    Uses export.arxiv.org Atom API; cached per arXiv id.
+    """
+    link = (item.get("link") or "").strip()
+    m = ARXIV_ABS_RE.match(link)
+    if not m:
+        return
+    arxiv_id = m.group(1)
+    if arxiv_id in cache:
+        first, last, authors = cache[arxiv_id]
+        if first:
+            item["first_author"] = first
+        if last:
+            item["last_author"] = last
+        if authors:
+            item["authors"] = authors
+        return
+
+    api_url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
+    try:
+        xml = _fetch_text(api_url, timeout_s=25)
+        root = ET.fromstring(xml)
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        entry = root.find("a:entry", ns)
+        authors: list[str] = []
+        if entry is not None:
+            for a in entry.findall("a:author", ns):
+                name = a.findtext("a:name", default="", namespaces=ns).strip()
+                if name:
+                    authors.append(name)
+    except (urllib.error.URLError, ET.ParseError, OSError):
+        authors = []
+
+    first = authors[0] if authors else ""
+    last = authors[-1] if authors else ""
+    cache[arxiv_id] = (first, last, authors)
+    if first:
+        item["first_author"] = first
+    if last:
+        item["last_author"] = last
+    if authors:
+        item["authors"] = authors
+
+
+def enrich_og_image(item: dict[str, Any]) -> None:
+    """
+    Best-effort thumbnail via og:image or twitter:image meta tags.
+    Intended for publisher pages; arXiv is usually not helpful.
+    """
+    link = (item.get("link") or "").strip()
+    if not link or ARXIV_ABS_RE.match(link):
+        return
+    try:
+        html = _fetch_text(link, timeout_s=15)
+    except (urllib.error.URLError, OSError):
+        return
+    m = OG_IMAGE_RE.search(html) or TW_IMAGE_RE.search(html)
+    if not m:
+        return
+    url = m.group(1).strip()
+    if url:
+        item["image_url"] = url
+
 
 def slugify(label: str) -> str:
     s = label.lower()
@@ -198,6 +291,12 @@ def parse_rss_bytes(
             break
 
     items_out: list[dict[str, Any]] = []
+    enrich_authors = _get_env_int("PAPERS_ENRICH_AUTHORS", 1) != 0
+    enrich_images = _get_env_int("PAPERS_ENRICH_IMAGES", 0) != 0
+    max_images = max(0, _get_env_int("PAPERS_ENRICH_IMAGES_MAX", 10))
+    arxiv_cache: dict[str, tuple[str, str, list[str]]] = {}
+    images_done = 0
+
     for child in channel:
         if strip_ns(child.tag) != "item":
             continue
@@ -223,6 +322,13 @@ def parse_rss_bytes(
             "pub_date": pub_date,
             **parsed,
         }
+        if enrich_authors:
+            enrich_arxiv_authors(item, arxiv_cache)
+        if enrich_images and images_done < max_images:
+            before = item.get("image_url")
+            enrich_og_image(item)
+            if item.get("image_url") and not before:
+                images_done += 1
         items_out.append(item)
 
     featured = pick_featured(items_out)

@@ -140,6 +140,26 @@ article.rss-browser-single .post-content h2.paper-feed-card__title {
   text-underline-offset: 0.1em;
 }
 
+.paper-feed-card__authors {
+  margin: 0 0 0.35rem;
+  font-size: var(--paper-item-desc-size, 0.88rem);
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.paper-feed-card__figure {
+  margin: 0.55rem 0 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.paper-feed-card__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .paper-feed-card__abstract {
   margin-top: 0.5rem;
   font-size: var(--paper-item-desc-size, 0.88rem);

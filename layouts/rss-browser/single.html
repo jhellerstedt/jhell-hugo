@@ -48,7 +48,29 @@
               {{- else -}}{{ . }}{{- end -}}
             </h2>
             {{- end -}}
+            {{- if or $item.first_author $item.last_author -}}
+            <p class="paper-feed-card__authors">
+              {{- if and $item.first_author $item.last_author -}}
+                {{- if eq $item.first_author $item.last_author -}}
+                  {{ $item.first_author }}
+                {{- else -}}
+                  {{ $item.first_author }} · {{ $item.last_author }}
+                {{- end -}}
+              {{- else if $item.first_author -}}
+                {{ $item.first_author }}
+              {{- else -}}
+                {{ $item.last_author }}
+              {{- end -}}
+            </p>
+            {{- end -}}
             {{- partial "papers/item-bibliography.html" $item -}}
+            {{- with $item.image_url -}}
+            <figure class="paper-feed-card__figure">
+              <a href="{{ $item.link | safeURL }}" rel="noopener noreferrer" target="_blank">
+                <img src="{{ . | safeURL }}" alt="" loading="lazy" />
+              </a>
+            </figure>
+            {{- end -}}
             {{- with $item.abstract -}}
             <div class="paper-feed-card__abstract">
               {{- range split . "\n\n" -}}
