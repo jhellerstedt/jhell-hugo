@@ -11,11 +11,17 @@ Configuration (in order of precedence for URL):
 Local XML directory (when URL is empty):
   - Environment variable PAPERS_FEED_DIR (optional override)
   - config.yml → params.papersFeed.localDir (default: static/rss)
+
+HTML abstracts: some publishers (e.g. ACS) serve figure URLs with CORP: same-origin,
+so cross-site <img> embeds break in common browsers. By default
+(PAPERS_REWRITE_CORP_EMBED_IMGS=1) those <img> tags are rewritten to links that
+open the same URL in a new tab. Set PAPERS_REWRITE_CORP_EMBED_IMGS=0 to keep raw HTML.
 """
 
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import os
 import re
@@ -26,6 +32,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "data" / "papers.json"
@@ -67,6 +74,48 @@ RE_INST_COMB = re.compile(
 RE_INST_FIRST = re.compile(r"^First\s+author\s+institution\s*:\s*(.+)\s*$", re.I)
 RE_INST_LAST = re.compile(r"^Last\s+author\s+institution\s*:\s*(.+)\s*$", re.I)
 RE_ABSTRACT_PREFIX = re.compile(r"^\s*Abstract\s*[—\-:]\s*", re.I)
+
+# ACS CDN sets Cross-Origin-Resource-Policy: same-origin; cross-site <img> embeds
+# fail in Chromium-based browsers (broken image). Opening the same URL in a new
+# tab is same-origin to the asset and works. See rewrite_embed_blocked_imgs().
+RE_IMG_TAG = re.compile(r"<img\s[^>]*>", re.IGNORECASE)
+RE_IMG_SRC = re.compile(r'\bsrc\s*=\s*("([^"]*)"|\'([^\']*)\')', re.IGNORECASE)
+RE_IMG_ALT = re.compile(r'\balt\s*=\s*("([^"]*)"|\'([^\']*)\')', re.IGNORECASE)
+CORP_EMBED_BLOCKED_HOSTS = frozenset({"pubs.acs.org"})
+
+
+def rewrite_embed_blocked_imgs(fragment: str) -> str:
+    """
+    Replace <img src="https://pubs.acs.org/..."> (and similar) with a plain link.
+
+    Publisher CDNs often respond with CORP: same-origin, so embedded thumbnails
+    cannot load from another site; a top-level navigation to the image URL works.
+    """
+
+    def repl(m: re.Match[str]) -> str:
+        tag = m.group(0)
+        sm = RE_IMG_SRC.search(tag)
+        if not sm:
+            return tag
+        src = (sm.group(2) or sm.group(3) or "").strip()
+        if not src.startswith(("http://", "https://")):
+            return tag
+        host = (urlparse(src).hostname or "").lower()
+        if not any(
+            host == h or host.endswith("." + h) for h in CORP_EMBED_BLOCKED_HOSTS
+        ):
+            return tag
+        am = RE_IMG_ALT.search(tag)
+        alt = (am.group(2) or am.group(3) or "").strip() if am else ""
+        label = alt if alt else "View journal figure / TOC"
+        href = html.escape(src, quote=True)
+        text = html.escape(label, quote=False)
+        return (
+            f'<a class="paper-feed-card__toc-graphic-fallback" href="{href}" '
+            f'target="_blank" rel="noopener noreferrer">{text}</a>'
+        )
+
+    return RE_IMG_TAG.sub(repl, fragment)
 
 
 def strip_ns(tag: str) -> str:
@@ -322,6 +371,10 @@ def parse_rss_bytes(
             "pub_date": pub_date,
             **parsed,
         }
+        if _get_env_int("PAPERS_REWRITE_CORP_EMBED_IMGS", 1) != 0:
+            ab = item.get("abstract")
+            if isinstance(ab, str) and ab.strip():
+                item["abstract"] = rewrite_embed_blocked_imgs(ab)
         if enrich_authors:
             enrich_arxiv_authors(item, arxiv_cache)
         if enrich_images and images_done < max_images:

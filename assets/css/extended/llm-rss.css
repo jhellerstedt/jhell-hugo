@@ -182,6 +182,12 @@ article.rss-browser-single .post-content h2.paper-feed-card__title {
   margin: 0.35rem 0 0;
 }
 
+.paper-feed-card__abstract a.paper-feed-card__toc-graphic-fallback {
+  display: inline-block;
+  margin: 0.35rem 0 0;
+  font-size: 0.9em;
+}
+
 .rss-browser-index {
   list-style: disc;
   padding-left: 1.25rem;
