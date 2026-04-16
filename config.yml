@@ -77,6 +77,9 @@ params:
   papersFeed:
     url: ""
     localDir: static/rss
+    # Same-origin path nginx proxies to https://pubs.acs.org/ (see docker/nginx-default.conf).
+    # Regenerate papers.json after changing. Leave empty to use link fallback for ACS figures.
+    acsImageProxyPath: "/_acs_proxy"
 
   defaultTheme: auto
   ShowShareButtons: false

@@ -64,7 +64,7 @@ hugo --minify
 rsync -avz --delete public/ user@server:/var/www/jhell.imipolex.biz/html/
 ```
 
-Use SSH keys, a deploy user with write access only to that tree, and reload or let nginx pick up new files. Configure TLS at the reverse proxy as usual.
+Use SSH keys, a deploy user with write access only to that tree, and reload or let nginx pick up new files. Configure TLS at the reverse proxy as usual. If you use **`acsImageProxyPath`** (for ACS figures on `/rss-browser/…`), add the **`/_acs_proxy/`** `location` block from **`docker/nginx-default.conf`** to the nginx instance that serves the static tree (or use the bundled Docker image, which includes it).
 
 ## Curated paper RSS → `/feeds/`
 
@@ -78,8 +78,9 @@ In **`config.yml`**, under `params.papersFeed`:
 
 - **`url`** — If non-empty, the build script fetches this RSS URL once and writes a single feed entry (no `/rss/…` link row; article links still work).
 - **`localDir`** — If `url` is empty, the script reads every `*.xml` in this directory (default `static/rss`).
+- **`acsImageProxyPath`** — If set (default `/_acs_proxy` in this repo), ACS TOC `<img>` URLs in HTML abstracts are rewritten to that same-origin path so nginx can proxy them (see `docker/nginx-default.conf`). Leave empty to use a “open on publisher” link instead of an inline image. Override at build time with **`PAPERS_ACS_IMAGE_PROXY_PATH`**.
 
-Environment overrides (useful in CI): **`PAPERS_FEED_URL`**, **`PAPERS_FEED_DIR`**.
+Environment overrides (useful in CI): **`PAPERS_FEED_URL`**, **`PAPERS_FEED_DIR`**, **`PAPERS_ACS_IMAGE_PROXY_PATH`**.
 
 ### Build commands
 

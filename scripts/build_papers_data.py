@@ -12,10 +12,20 @@ Local XML directory (when URL is empty):
   - Environment variable PAPERS_FEED_DIR (optional override)
   - config.yml → params.papersFeed.localDir (default: static/rss)
 
-HTML abstracts: some publishers (e.g. ACS) serve figure URLs with CORP: same-origin,
-so cross-site <img> embeds break in common browsers. By default
-(PAPERS_REWRITE_CORP_EMBED_IMGS=1) those <img> tags are rewritten to links that
-open the same URL in a new tab. Set PAPERS_REWRITE_CORP_EMBED_IMGS=0 to keep raw HTML.
+HTML abstracts: ACS figure URLs often send Cross-Origin-Resource-Policy: same-origin,
+so cross-site <img> embeds break in Chromium. Mitigations:
+
+  - Set params.papersFeed.acsImageProxyPath (e.g. "/_acs_proxy") and serve the site
+    behind nginx that proxies /_acs_proxy/ → https://pubs.acs.org/ (see docker/).
+    The build script then rewrites <img src="https://pubs.acs.org/..."> to same-origin
+    paths so thumbnails display inline.
+
+  - If acsImageProxyPath is empty: with PAPERS_REWRITE_CORP_EMBED_IMGS=1 (default),
+    those <img> tags become links to the publisher URL (opens in a new tab).
+
+  - PAPERS_REWRITE_CORP_EMBED_IMGS=0 leaves raw publisher <img> URLs (often broken inline).
+
+Env overrides: PAPERS_ACS_IMAGE_PROXY_PATH (if set, replaces acsImageProxyPath from config).
 """
 
 from __future__ import annotations
@@ -116,6 +126,46 @@ def rewrite_embed_blocked_imgs(fragment: str) -> str:
         )
 
     return RE_IMG_TAG.sub(repl, fragment)
+
+
+def rewrite_acs_imgs_to_proxy(fragment: str, proxy_prefix: str) -> str:
+    """Point ACS <img src> at same-origin proxy path (see nginx /_acs_proxy/)."""
+    prefix = proxy_prefix.strip().rstrip("/")
+    if not prefix.startswith("/"):
+        prefix = "/" + prefix
+
+    def repl(m: re.Match[str]) -> str:
+        tag = m.group(0)
+        sm = RE_IMG_SRC.search(tag)
+        if not sm:
+            return tag
+        src = (sm.group(2) or sm.group(3) or "").strip()
+        if not src.startswith(("http://", "https://")):
+            return tag
+        host = (urlparse(src).hostname or "").lower()
+        if not any(
+            host == h or host.endswith("." + h) for h in CORP_EMBED_BLOCKED_HOSTS
+        ):
+            return tag
+        parsed = urlparse(src)
+        path = parsed.path or "/"
+        tail = ("?" + parsed.query) if parsed.query else ""
+        new_src = prefix + path + tail
+        esc = html.escape(new_src, quote=True)
+        new_attr = f'src="{esc}"'
+        return tag[: sm.start()] + new_attr + tag[sm.end() :]
+
+    return RE_IMG_TAG.sub(repl, fragment)
+
+
+def postprocess_html_abstract_images(fragment: str, acs_proxy_prefix: str) -> str:
+    """CORP-safe ACS thumbnails: same-origin proxy when configured, else link fallback."""
+    if _get_env_int("PAPERS_REWRITE_CORP_EMBED_IMGS", 1) == 0:
+        return fragment
+    proxy = acs_proxy_prefix.strip()
+    if proxy:
+        return rewrite_acs_imgs_to_proxy(fragment, proxy)
+    return rewrite_embed_blocked_imgs(fragment)
 
 
 def strip_ns(tag: str) -> str:
@@ -319,6 +369,7 @@ def parse_rss_bytes(
     source: str,
     rss_href: str,
     feed_id: str | None = None,
+    acs_image_proxy_path: str = "",
 ) -> dict[str, Any]:
     root = ET.fromstring(data)
     if strip_ns(root.tag) != "rss":
@@ -371,10 +422,9 @@ def parse_rss_bytes(
             "pub_date": pub_date,
             **parsed,
         }
-        if _get_env_int("PAPERS_REWRITE_CORP_EMBED_IMGS", 1) != 0:
-            ab = item.get("abstract")
-            if isinstance(ab, str) and ab.strip():
-                item["abstract"] = rewrite_embed_blocked_imgs(ab)
+        ab = item.get("abstract")
+        if isinstance(ab, str) and ab.strip():
+            item["abstract"] = postprocess_html_abstract_images(ab, acs_image_proxy_path)
         if enrich_authors:
             enrich_arxiv_authors(item, arxiv_cache)
         if enrich_images and images_done < max_images:
@@ -410,12 +460,13 @@ def _strip_yaml_scalar(value: str) -> str:
 
 def load_papers_feed_from_config(cfg_path: Path) -> dict[str, str]:
     """
-    Read params.papersFeed.url and localDir from config.yml without PyYAML.
+    Read params.papersFeed (url, localDir, acsImageProxyPath) from config.yml without PyYAML.
     """
     url = ""
     local_dir = "static/rss"
+    acs_proxy = ""
     if not cfg_path.is_file():
-        return {"url": url, "localDir": local_dir}
+        return {"url": url, "localDir": local_dir, "acsImageProxyPath": acs_proxy}
 
     lines = cfg_path.read_text(encoding="utf-8").splitlines()
     i = 0
@@ -438,24 +489,30 @@ def load_papers_feed_from_config(cfg_path: Path) -> dict[str, str]:
                 m = re.match(r"^\s*localDir\s*:\s*(.*)$", li)
                 if m:
                     local_dir = _strip_yaml_scalar(m.group(1)) or local_dir
+                m = re.match(r"^\s*acsImageProxyPath\s*:\s*(.*)$", li)
+                if m:
+                    acs_proxy = _strip_yaml_scalar(m.group(1)).strip()
                 i += 1
             break
         i += 1
 
-    return {"url": url, "localDir": local_dir}
+    return {"url": url, "localDir": local_dir, "acsImageProxyPath": acs_proxy}
 
 
-def papers_feed_settings() -> tuple[str, str]:
-    """Returns (feed_url, local_dir)."""
+def papers_feed_settings() -> tuple[str, str, str]:
+    """Returns (feed_url, local_dir, acs_image_proxy_path)."""
     cfg_path = REPO_ROOT / "config.yml"
     pf = load_papers_feed_from_config(cfg_path)
     url = (pf.get("url") or "").strip()
     local_dir = (pf.get("localDir") or "static/rss").strip()
+    acs_proxy = (pf.get("acsImageProxyPath") or "").strip()
 
     url = (os.environ.get("PAPERS_FEED_URL") or "").strip() or url
     local_dir = (os.environ.get("PAPERS_FEED_DIR") or local_dir).strip()
+    if "PAPERS_ACS_IMAGE_PROXY_PATH" in os.environ:
+        acs_proxy = os.environ["PAPERS_ACS_IMAGE_PROXY_PATH"].strip()
 
-    return url, local_dir
+    return url, local_dir, acs_proxy
 
 
 def fetch_url(url: str) -> bytes:
@@ -471,6 +528,7 @@ def build_feeds(
     url: str,
     local_dir: str,
     fixtures_dir: Path | None,
+    acs_image_proxy_path: str = "",
 ) -> list[dict[str, Any]]:
     feeds: list[dict[str, Any]] = []
 
@@ -486,6 +544,7 @@ def build_feeds(
                     source=str(path.relative_to(REPO_ROOT)),
                     rss_href="",
                     feed_id=path.stem,
+                    acs_image_proxy_path=acs_image_proxy_path,
                 )
             )
         return feeds
@@ -493,7 +552,13 @@ def build_feeds(
     if url:
         data = fetch_url(url)
         feeds.append(
-            parse_rss_bytes(data, source=url, rss_href="", feed_id=None)
+            parse_rss_bytes(
+                data,
+                source=url,
+                rss_href="",
+                feed_id=None,
+                acs_image_proxy_path=acs_image_proxy_path,
+            )
         )
         return feeds
 
@@ -516,6 +581,7 @@ def build_feeds(
                 source=str(path.relative_to(REPO_ROOT)),
                 rss_href=f"/rss/{path.name}",
                 feed_id=stem,
+                acs_image_proxy_path=acs_image_proxy_path,
             )
         )
     return feeds
@@ -579,7 +645,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    url, local_dir = papers_feed_settings()
+    url, local_dir, acs_proxy = papers_feed_settings()
     fixtures_dir: Path | None = None
     if args.fixtures:
         fixtures_dir = REPO_ROOT / "scripts" / "fixtures"
@@ -590,7 +656,7 @@ def main() -> int:
         local_dir = ""
 
     try:
-        feeds = build_feeds(url, local_dir, fixtures_dir)
+        feeds = build_feeds(url, local_dir, fixtures_dir, acs_proxy)
     except (urllib.error.URLError, OSError, ValueError, ET.ParseError) as e:
         print(f"Error building papers data: {e}", file=sys.stderr)
         return 1
