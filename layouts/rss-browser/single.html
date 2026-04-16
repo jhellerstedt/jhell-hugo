@@ -73,8 +73,9 @@
             {{- end -}}
             {{- with $item.abstract -}}
             {{- $abs := trim . " \n\t" -}}
+            {{- $absHTML := findRE `(?i)<\s*(?:p|div|img|a|span|cite|table|ul|ol|br|h[1-6]|section|article)\b` $abs 1 -}}
             <div class="paper-feed-card__abstract">
-              {{- if strings.HasPrefix $abs "<" -}}
+              {{- if or (strings.HasPrefix $abs "<") (gt (len $absHTML) 0) -}}
                 {{- $abs | safeHTML -}}
               {{- else -}}
                 {{- range split . "\n\n" -}}
