@@ -22,15 +22,34 @@ function underRoot(root, candidate) {
   return rel !== "" && !rel.startsWith("..") && !normalize(rel).startsWith(`..${normalize("/")}`);
 }
 
+function pathnameFromUrl(urlPath) {
+  const raw = (urlPath || "/").split("?")[0] || "/";
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
+
 function resolveHtmlFile(urlPath) {
-  const pathname = decodeURIComponent((urlPath || "/").split("?")[0] || "/");
+  const pathname = pathnameFromUrl(urlPath);
   const root = resolve(HTML_ROOT);
+  const rel = pathname.replace(/^\/+/, "");
+
+  // Literal HTML files (e.g. /index.html, /blog/index.html) — Hugo writes these paths on disk.
+  if (rel.endsWith(".html")) {
+    const direct = resolve(join(root, rel));
+    if (underRoot(root, direct) && existsSync(direct) && statSync(direct).isFile()) {
+      return direct;
+    }
+  }
+
   const candidates = [];
 
   if (pathname === "/" || pathname === "") {
     candidates.push(join(root, "index.html"));
   } else {
-    const stripped = pathname.replace(/^\/+/, "");
+    const stripped = rel;
     if (pathname.endsWith("/")) {
       candidates.push(join(root, stripped, "index.html"));
     } else {
@@ -60,6 +79,10 @@ function estimateTokens(text) {
   return String(Math.ceil(Buffer.byteLength(text, "utf8") / 4));
 }
 
+function errorBody(req, text) {
+  return req.method === "HEAD" ? "" : text;
+}
+
 function htmlToMarkdown(html) {
   const dom = new JSDOM(html);
   const { document } = dom.window;
@@ -77,22 +100,22 @@ function htmlToMarkdown(html) {
 }
 
 const server = http.createServer((req, res) => {
-  if (req.method !== "GET") {
-    res.writeHead(405, { Allow: "GET" });
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.writeHead(405, { Allow: "GET, HEAD" });
     res.end();
     return;
   }
 
   if (!wantsMarkdown(req.headers.accept || "")) {
     res.writeHead(406, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Not Acceptable: this service requires Accept: text/markdown\n");
+    res.end(errorBody(req, "Not Acceptable: this service requires Accept: text/markdown\n"));
     return;
   }
 
   const file = resolveHtmlFile(req.url || "/");
   if (!file) {
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Not Found\n");
+    res.end(errorBody(req, "Not Found\n"));
     return;
   }
 
@@ -101,13 +124,13 @@ const server = http.createServer((req, res) => {
     st = statSync(file);
   } catch {
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Not Found\n");
+    res.end(errorBody(req, "Not Found\n"));
     return;
   }
 
   if (st.size > MAX_BYTES) {
     res.writeHead(413, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Payload Too Large\n");
+    res.end(errorBody(req, "Payload Too Large\n"));
     return;
   }
 
@@ -116,7 +139,7 @@ const server = http.createServer((req, res) => {
     html = readFileSync(file, "utf8");
   } catch {
     res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Internal Server Error\n");
+    res.end(errorBody(req, "Internal Server Error\n"));
     return;
   }
 
@@ -126,15 +149,22 @@ const server = http.createServer((req, res) => {
   } catch (err) {
     console.error(err);
     res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Conversion failed\n");
+    res.end(errorBody(req, "Conversion failed\n"));
     return;
   }
 
   const tokens = estimateTokens(markdown);
-  res.writeHead(200, {
+  const headers = {
     "Content-Type": "text/markdown; charset=utf-8",
+    Vary: "Accept",
     "x-markdown-tokens": tokens,
-  });
+  };
+  if (req.method === "HEAD") {
+    res.writeHead(200, headers);
+    res.end();
+    return;
+  }
+  res.writeHead(200, headers);
   res.end(markdown);
 });
 
