@@ -12,6 +12,7 @@ RUN hugo --minify --environment production
 
 FROM nginx:1.27-alpine
 
+COPY docker/nginx-default.conf /etc/nginx/conf.d/default.conf
 COPY --from=hugo /src/public /usr/share/nginx/html
 
 EXPOSE 80

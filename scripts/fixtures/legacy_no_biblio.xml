@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Legacy-style feed</title>
+    <link>https://example.invalid</link>
+    <description>Single item, scores and abstract only</description>
+    <item>
+      <title>Early export without bibliographic lines</title>
+      <link>https://example.invalid/papers/legacy</link>
+      <description>reply.relevance=5
+reply.impact=4
+
+Only the abstract body here. No author or institution lines.</description>
+    </item>
+  </channel>
+</rss>

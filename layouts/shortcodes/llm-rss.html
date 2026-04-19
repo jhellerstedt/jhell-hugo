@@ -1,19 +1,41 @@
-{{- $dir := "static/rss" -}}
-{{- $files := slice -}}
-{{- range readDir $dir -}}
-  {{- if and (not .IsDir) (strings.HasSuffix (lower .Name) ".xml") -}}
-    {{- $files = $files | append . -}}
-  {{- end -}}
-{{- end -}}
-{{- if gt (len $files) 0 -}}
+{{- /* hugo.Data exists from v0.156; site.Data keeps builds working on older Hugo (e.g. peaceiris/hugo:0.146). */ -}}
+{{- $papers := site.Data.papers -}}
+{{- if and $papers (gt (len $papers.feeds) 0) -}}
 <ul class="rss-feed-list">
-  {{- range sort $files "Name" -}}
-    {{- $href := printf "/rss/%s" .Name -}}
-    {{- $stem := strings.TrimSuffix ".xml" .Name -}}
-    {{- $label := humanize (replace $stem "_" " ") -}}
-    <li><a href="{{ $href | relURL }}">{{ $label }}</a></li>
+  {{- range sort $papers.feeds "id" -}}
+    {{- $label := strings.TrimSpace (partial "papers/feed-label.html" .) -}}
+    {{- $feat := .featured -}}
+    {{- $browse := printf "/rss-browser/%s/" .id | relURL -}}
+    {{- $sub := "" -}}
+    {{- with .rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+    {{- if and (not $sub) .source -}}
+      {{- if strings.HasPrefix .source "http" -}}{{- $sub = .source -}}{{- end -}}
+    {{- end -}}
+    <li class="rss-feed-list__item">
+      <div class="rss-feed-list__head">
+        <a class="rss-feed-list__browse" href="{{ $browse }}">{{ $label }}</a>
+        {{- if $sub -}}
+        <span class="rss-feed-list__sep" aria-hidden="true">·</span>
+        <a class="rss-feed-list__xml" href="{{ $sub | safeURL }}" rel="alternate" type="application/rss+xml">XML feed</a>
+        {{- end -}}
+      </div>
+      {{- with $feat -}}
+        <div class="rss-feed-summary">
+          {{- if .title -}}
+            <p class="rss-feed-summary__title">
+              {{- if .link -}}
+                <a href="{{ .link | safeURL }}" rel="noopener noreferrer" target="_blank">{{ .title }}</a>
+              {{- else -}}
+                {{ .title }}
+              {{- end -}}
+            </p>
+          {{- end -}}
+          {{- partial "papers/feed-featured.html" (dict "featured" .) -}}
+        </div>
+      {{- end -}}
+    </li>
   {{- end -}}
 </ul>
 {{- else -}}
-<p><em>No <code>*.xml</code> files in <code>static/rss</code> yet.</em></p>
+<p class="papers-feed-empty"><em>No curated papers data yet. Run <code>python3 scripts/build_papers_data.py</code> (or <code>--fixtures</code> for a sample), then rebuild with Hugo. XML files belong in <code>static/rss/</code> unless you set <code>params.papersFeed.url</code> or <code>PAPERS_FEED_URL</code>.</em></p>
 {{- end -}}

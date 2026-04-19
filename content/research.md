@@ -11,7 +11,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-0-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p></p>
+<p>Optical Pulse Monitoring (OPM) is an emerging non-invasive approach to measuring the mechanical pulsations of the brain that arise from the cardiac cycle. Unlike conventional intracranial monitoring which requires surgically implanted probes or catheters to measure <a href="https://en.wikipedia.org/wiki/Intracranial_pressure">intracranial pressure</a> (ICP) directly, OPM uses optical signals at the scalp to detect subtle volume changes in the underlying cerebrovascular system.</p>
+
+<p>The technique sits at the intersection of photonics, neuroscience, and clinical engineering, and holds promise for continuous, bedside-safe monitoring of patients at risk of raised ICP.</p>
 
 
 
@@ -41,7 +43,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-1-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>Measurement of intracranial pressure is typically done via an invasive probe.</p>
+<p><a href="https://en.wikipedia.org/wiki/Intracranial_pressure">Intracranial pressure</a> (ICP) is the pressure exerted by cerebrospinal fluid and brain tissue within the skull, normally 7–15 mmHg in a supine adult. Sustained elevation above roughly 20–25 mmHg is associated with serious neurological injury, yet the gold-standard measurement method — inserting a pressure transducer or external ventricular drain directly into the brain — carries significant procedural risk. Developing reliable non-invasive alternatives is therefore a major clinical priority, particularly for patients who have suffered acute brain injury or subarachnoid haemorrhage.</p>
+
+<p>The two case reports in this category apply a novel non-invasive brain pulse monitor to exactly these high-stakes scenarios. The 2023 Dove Press paper assesses the device&#8217;s ability to track ICP following acute brain injury, while the 2024 paper examines cerebrovascular responses, specifically Lundberg B waves, a recognised marker of impaired cerebrovascular autoregulation, in a patient recovering from subarachnoid haemorrhage. Together they provide early clinical evidence that optical brain pulse signals can capture haemodynamically meaningful ICP dynamics without the risks of invasive instrumentation.</p>
 
 
 
@@ -81,7 +85,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-2-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>Self-assembly at the nanoscale means using the nearly limitless library of organic molecules as building blocks to ideally engineer the electronic phenomena that emerge from the periodic patterns they form.<br><br>One such example is our work attributing the Kondo effect we measured in a substrate supported metal-organic framework to a strongly correlated electron state existing in the MOF.</p>
+<p><a href="https://en.wikipedia.org/wiki/Metal-organic_framework">Metal-organic frameworks</a> (MOFs) are a class of coordination polymers in which metal ion clusters are linked by organic ligand &#8220;struts&#8221; to form highly ordered one-, two-, or three-dimensional porous structures. At the nanoscale, the nearly limitless combinatorial library of organic building blocks makes MOFs an attractive platform for engineering emergent electronic phenomena: by choosing the right metal centre and ligand geometry, researchers can in principle dial in specific band structures, magnetic interactions, or correlated-electron states. Two-dimensional MOFs grown on surfaces are particularly compelling because they can be interrogated and gated with scanning probe and electrostatic techniques unavailable to bulk crystals.</p>
+
+<p>This body of work spans three publications that progressively deepen the understanding of electronic correlations in 2D MOFs. The 2021 <em>Advanced Functional Materials</em> paper identifies a manifestation of strongly correlated electrons in a 2D kagome-lattice MOF, attributing a measured Kondo resonance to the correlated electron state of the framework itself. The 2024 <em>Nature Communications</em> paper by Lowe, Field, Hellerstedt et al. demonstrates local electrostatic gate control of a Mott metal-insulator transition in a 2D MOF, a landmark result showing that the correlated insulating state can be switched on and off with a gate voltage. Most recently, the 2025 <em>Small Structures</em> paper explores how chirality at the MOF&#8211;substrate interface can be used to tune interfacial electronic properties, opening a further design axis for functional 2D MOF devices.</p>
 
 
 
@@ -141,7 +147,9 @@ hideMeta: true
 
 
 
-<p>The invention of scanning tunneling microscopy and more recently, non-contact atomic force microscopy, has made the observation and manipulation of single atoms and molecules a routine exercise.<br><br>This work is at the intersection of chemistry &amp; physics, with diverse messages reflecting the high likelihood for observing unexpected results even with tightly controlled ingredients and experimental circumstances.</p>
+<p>The invention of the <a href="https://en.wikipedia.org/wiki/Scanning_tunneling_microscope">scanning tunneling microscope</a> (STM) by Binnig and Rohrer &#8212; recognised with the 1986 Nobel Prize in Physics &#8212; and the subsequent development of non-contact atomic force microscopy (nc-AFM) transformed surface science by making the imaging and manipulation of individual atoms and molecules a routine laboratory exercise. This body of work exploits both techniques to study what happens when organic molecules are deposited on atomically clean metal and insulator surfaces: how they self-assemble, how the substrate modifies their electronic structure, and how unexpected chemical reactions can be catalysed at the single-atom level. The research sits at the boundary of physics and chemistry, and a recurring theme is that even tightly controlled ingredients can produce surprising results.</p>
+
+<p>The ten publications spanning 2018&#8211;2024 cover a wide range of phenomena. Early work characterised the structural and electronic properties of surface-supported single-molecule magnets (Tb<sub>2</sub>Pc<sub>3</sub>) and iron-based metal-organic nanostructures, revealing local charge accumulation effects. Subsequent papers examined aromatic azide transformations on Ag(111), the role of nuclear quantum effects in hydrogen-bonded molecular chains, and long-range surface-assisted molecule&#8211;molecule hybridisation. More recent contributions demonstrated room-temperature selective C&#8211;H bond activation catalysed by single gold atoms, direct observation of narrow electronic band formation in 2D molecular self-assemblies, mesoscopic self-assembly on insulators, and an upper-bound estimate of the electronic scattering potential of weakly interacting molecular films, collectively building a detailed picture of how molecule&#8211;substrate coupling shapes nanoscale electronic structure.</p>
 
 
 
@@ -293,7 +301,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-4-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>We applied the methodology developed for Bi<sub>2</sub>Se<sub>3</sub> to the Dirac semimetal Na<sub>3</sub>Bi with remarkable success. These are materials where band inversion near the Fermi level creates Dirac-like &#8220;cones&#8221;, a 3d version of the dispersion that made graphene famous.<br><br>We demonstrated large-area thin-film growth, with control in the regime where we could electrostatically control the presence of a topological gap, experimental proof-of-concept to build a topological transistor.<br><br>We demonstrated the efficacy of MgF<sub>2</sub> as a stabilising capping layer, opening the door to possibilities for Na<sub>3</sub>Bi beyond just a UHV curiousity.</p>
+<p>Sodium bismuthide (Na<sub>3</sub>Bi) is a <a href="https://en.wikipedia.org/wiki/Topological_insulator">topological</a> Dirac semimetal in which band inversion near the Fermi level produces linearly dispersing &#8220;Dirac cones&#8221; &#8212; a three-dimensional analogue of the dispersion relation that made graphene famous. In the ultrathin-film limit, a gap can be opened in these cones by quantum confinement or an applied electric field, driving the material into a topological insulating phase. This tunability makes Na<sub>3</sub>Bi a compelling candidate for a topological transistor: a device that switches between topologically trivial and non-trivial states under electrostatic control, with potential applications in low-dissipation electronics.</p>
+
+<p>Eight publications from 2016 to 2021 document the systematic development of Na<sub>3</sub>Bi as a practical thin-film platform. Initial work established high-quality epitaxial growth and characterised the electronic properties of the resulting films. Subsequent studies demonstrated electrostatic modulation of carrier density, molecular doping across the charge neutrality point using F<sub>4</sub>-TCNQ, and the observation of a temperature-dependent n&#8211;p transition. A landmark 2018 <em>Nature</em> paper reported electric-field-tuned topological phase transitions in ultrathin Na<sub>3</sub>Bi, direct experimental proof-of-concept for the topological transistor concept. The programme was completed by demonstrating air-stable quantum transport using MgF<sub>2</sub> capping layers and publishing a 2021 <em>Advanced Materials</em> review of the field, opening the door to Na<sub>3</sub>Bi device fabrication outside ultra-high-vacuum environments.</p>
 
 
 
@@ -417,7 +427,9 @@ hideMeta: true
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-5-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
 
-<p>My <a rel="noreferrer noopener" href="https://drum.lib.umd.edu/handle/1903/16588" target="_blank">thesis</a> research focussed on the seminal <a rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Topological_insulator" target="_blank">topological insulator</a> <a rel="noreferrer noopener" href="https://www.nature.com/articles/nphys1274" target="_blank">Bi<sub>2</sub>Se<sub>3</sub></a>. <br><br><a rel="noreferrer noopener" href="http://doi.org/10.1117/12.2033659" target="_blank">With the apparatus we developed</a> we were able to show that significant doping is present as soon as the TI is grown on substrate, before exposure to atmosphere. <br><br>We demonstrated that electron acceptor MoO<sub>3</sub> can mitigate this effect and stabilise the TI in atmosphere.</p>
+<p>Bismuth selenide (Bi<sub>2</sub>Se<sub>3</sub>) is the canonical <a href="https://en.wikipedia.org/wiki/Topological_insulator">topological insulator</a>: a material whose bulk behaves as an electrical insulator while its surface hosts topologically protected conducting states that are robust against local perturbations. Because these surface states are protected by time-reversal symmetry rather than by material purity, they are of intense interest for applications in spintronics and fault-tolerant quantum computing. Realising this potential in practice requires thin-film growth techniques that preserve the topological surface states and methods to control the carrier density &#8212; both of which are complicated by the strong tendency of Bi<sub>2</sub>Se<sub>3</sub> to acquire unintentional bulk doping.</p>
+
+<p>The three 2014 publications from this thesis research addressed these challenges directly. In-situ transport measurements revealed that significant electron doping is already present in Bi<sub>2</sub>Se<sub>3</sub> immediately upon growth on a substrate, before any atmospheric exposure &#8212; a finding that shifted understanding of the doping mechanism. A companion study characterised how the surface reconstructs and degrades upon exposure to air. Most importantly, the work demonstrated that the strong electron acceptor molybdenum trioxide (MoO<sub>3</sub>) can compensate the excess electrons and stabilise Bi<sub>2</sub>Se<sub>3</sub> in the topological regime under ambient conditions, providing a practical route to air-stable topological insulator devices.</p>
 
 
 
@@ -470,6 +482,12 @@ hideMeta: true
 			<div class="wp-block-ub-content-toggle-accordion-toggle-wrap right" style="color: #000000;"><span class="wp-block-ub-content-toggle-accordion-state-indicator wp-block-ub-chevron-down"></span></div>
 		</div>
 			<div role="region" aria-expanded="false" class="wp-block-ub-content-toggle-accordion-content-wrap ub-hide" id="ub-content-toggle-panel-6-a5b1e3c6-68e9-4e48-a443-ae8dbd2f702d">
+
+<p>Advances in surface-science experiments increasingly depend on purpose-built software to automate tedious or time-sensitive measurement tasks and to extract quantitative information from large image datasets. The two software contributions in this category address both needs in the context of <a href="https://en.wikipedia.org/wiki/Scanning_tunneling_microscope">scanning tunneling microscopy</a> (STM): one automates the instrument itself, the other automates the analysis of the images it produces. Both tools are published as open-source software with accompanying peer-reviewed papers, making them citable, reproducible, and reusable by the broader surface-science community.</p>
+
+<p>Scanbot (Ceddia et al., <em>Journal of Open Source Software</em>, 2024) is an STM automation bot that handles routine but demanding tasks, namely tip conditioning, sample navigation, and spectroscopy acquisition, without continuous human supervision, dramatically increasing experimental throughput. The companion tool, <em>Counting Molecules</em> (Hellerstedt et al., <em>Software Impacts</em>, 2022), provides a Python-based pipeline for the automated enumeration and categorisation of individual molecules in STM images, replacing laborious manual counting with a reproducible algorithmic approach. Together these tools represent a step toward fully automated STM workflows, from data acquisition through to quantitative analysis.</p>
+
+
 
 <div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex wp-altmetric-row">
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:10%">

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Combined affiliation sample</title>
+    <link>https://example.invalid</link>
+    <description>Featured item uses combined institution line</description>
+    <item>
+      <title>Top paper with shared affiliation</title>
+      <link>https://example.invalid/papers/combined-top</link>
+      <description>reply.relevance=10
+reply.impact=9
+
+Highest h-index author on this paper: Pat Example (h-index 33)
+Institution (first &amp; last author): Institute for Combined Line Testing
+
+Abstract — Verifies the combined first/last author institution label in the UI.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,233 @@
+/* Feeds page: preview of top-scored item per LLM-filtered RSS file */
+.rss-feed-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.rss-feed-list__item {
+  margin-bottom: 1.25rem;
+}
+
+.rss-feed-list__item > a {
+  font-weight: 500;
+}
+
+.rss-feed-list__label {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.papers-feed-empty {
+  margin: 0.5rem 0;
+}
+
+.papers-feed-meta {
+  margin: 0.35rem 0 0.25rem;
+  padding: 0;
+  display: grid;
+  gap: 0.2rem 1rem;
+  grid-template-columns: auto 1fr;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.papers-feed-meta__row {
+  display: contents;
+}
+
+.papers-feed-meta dt {
+  margin: 0;
+  font-weight: 500;
+  color: var(--content);
+}
+
+.papers-feed-meta dd {
+  margin: 0;
+}
+
+.papers-feed-abstract {
+  margin-top: 0.35rem;
+}
+
+/* Feeds index: category (human view) vs XML subscription */
+.rss-feed-list__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+}
+
+.rss-feed-list__browse {
+  font-weight: 500;
+}
+
+.rss-feed-list__sep {
+  color: var(--secondary);
+  user-select: none;
+}
+
+.rss-feed-list__xml {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* /rss-browser/<category>/ — scrollable item list */
+.rss-browser-single {
+  --paper-item-desc-size: 0.88rem;
+}
+
+/* Page H1 vs description: same +3pt delta as paper cards (overrides theme .post-title ~40px) */
+.rss-browser-single .post-description {
+  font-size: var(--paper-item-desc-size);
+}
+
+article.rss-browser-single h1.post-title {
+  font-size: calc(var(--paper-item-desc-size) + 3pt);
+  line-height: 1.35;
+}
+
+.rss-browser-subscribe {
+  margin: 0 0 1rem;
+  font-size: 0.92em;
+  color: var(--secondary);
+}
+
+.rss-browser-subscribe-hint {
+  color: var(--secondary);
+  opacity: 0.95;
+}
+
+.paper-feed-scroll--browser {
+  max-height: min(70vh, 52rem);
+  overflow-y: auto;
+  padding-right: 0.35rem;
+  margin: 0 -0.15rem;
+  scrollbar-gutter: stable;
+}
+
+.paper-feed-card {
+  margin-bottom: 1.35rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.paper-feed-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.paper-feed-card__title {
+  margin: 0 0 0.4rem;
+  font-size: calc(var(--paper-item-desc-size, 0.88rem) + 3pt);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+/* PaperMod .post-content h2 { font-size: 32px } wins over .paper-feed-card__title alone */
+article.rss-browser-single .post-content h2.paper-feed-card__title {
+  font-size: calc(var(--paper-item-desc-size, 0.88rem) + 3pt);
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+.paper-feed-card__title a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-underline-offset: 0.1em;
+}
+
+.paper-feed-card__authors {
+  margin: 0 0 0.35rem;
+  font-size: var(--paper-item-desc-size, 0.88rem);
+  line-height: 1.4;
+  color: var(--secondary);
+}
+
+.paper-feed-card__figure {
+  margin: 0.55rem 0 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.paper-feed-card__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.paper-feed-card__abstract {
+  margin-top: 0.5rem;
+  font-size: var(--paper-item-desc-size, 0.88rem);
+  line-height: 1.5;
+  color: var(--secondary);
+}
+
+.paper-feed-card__abstract p {
+  margin: 0.35rem 0 0;
+}
+
+.paper-feed-card__abstract p:first-child {
+  margin-top: 0;
+}
+
+.paper-feed-card__abstract img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.35rem 0 0;
+}
+
+.paper-feed-card__abstract a.paper-feed-card__toc-graphic-fallback {
+  display: inline-block;
+  margin: 0.35rem 0 0;
+  font-size: 0.9em;
+}
+
+.rss-browser-index {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.rss-browser-index__sep {
+  margin: 0 0.35rem;
+  color: var(--secondary);
+  user-select: none;
+}
+
+.rss-feed-summary {
+  --paper-item-desc-size: 0.88rem;
+  margin: 0.35rem 0 0;
+  padding-left: 0.15rem;
+  border-left: 3px solid var(--border);
+}
+
+.rss-feed-summary__title {
+  margin: 0.25rem 0 0.2rem;
+  font-size: calc(var(--paper-item-desc-size) + 3pt);
+  line-height: 1.35;
+  color: var(--primary);
+}
+
+.rss-feed-summary__title a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-underline-offset: 0.12em;
+}
+
+.rss-feed-summary__title a:hover {
+  text-decoration-color: var(--primary);
+}
+
+.rss-feed-summary__text {
+  margin: 0;
+  font-size: var(--paper-item-desc-size);
+  line-height: 1.45;
+  color: var(--secondary);
+  opacity: 0.95;
+}

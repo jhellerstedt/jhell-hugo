@@ -1,0 +1,6 @@
+{{- $f := .featured -}}
+{{- if not $f -}}{{- return -}}{{- end -}}
+{{- partial "papers/item-bibliography.html" $f -}}
+{{- with $f.abstract -}}
+<p class="rss-feed-summary__text papers-feed-abstract">{{ truncate 320 . }}</p>
+{{- end -}}

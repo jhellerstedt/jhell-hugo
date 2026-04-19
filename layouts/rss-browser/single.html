@@ -1,0 +1,94 @@
+{{- define "main" -}}
+{{- $page := . -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "heading" $page.Title -}}
+{{- with site.Data.papers -}}
+  {{- $id := $page.Params.feed_id | default $page.File.ContentBaseName -}}
+  {{- $match := first 1 (where .feeds "id" $id) -}}
+  {{- if $match -}}
+    {{- $feed := index $match 0 -}}
+    {{- $scratch.Set "feed" $feed -}}
+    {{- $scratch.Set "heading" (strings.TrimSpace (partial "papers/feed-label.html" $feed)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $heading := $scratch.Get "heading" -}}
+{{- $feed := $scratch.Get "feed" -}}
+<article class="post-single rss-browser-single">
+  <header class="post-header">
+    {{- partial "breadcrumbs.html" $page -}}
+    <h1 class="post-title entry-hint-parent">{{ $heading }}</h1>
+    {{- with $page.Description -}}
+    <div class="post-description">{{ . }}</div>
+    {{- end -}}
+  </header>
+  <div class="post-content">
+    {{- if not site.Data.papers -}}
+      <p><em>No <code>data/papers.json</code> loaded.</em></p>
+    {{- else if not $feed -}}
+      <p><em>This category is missing from <code>data/papers.json</code>. Run <code>python3 scripts/build_papers_data.py</code> and rebuild the site.</em></p>
+    {{- else -}}
+        {{- $sub := "" -}}
+        {{- with $feed.rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+        {{- if and (not $sub) $feed.source -}}
+          {{- if strings.HasPrefix $feed.source "http" -}}{{- $sub = $feed.source -}}{{- end -}}
+        {{- end -}}
+        <p class="rss-browser-subscribe">
+          {{- if $sub -}}
+          <a href="{{ $sub | safeURL }}" rel="alternate" type="application/rss+xml">XML / RSS feed</a><span class="rss-browser-subscribe-hint"> — for news readers and subscription</span>
+          {{- else -}}
+          <span class="rss-browser-subscribe-hint">No subscription URL is available for this feed in the current build.</span>
+          {{- end -}}
+        </p>
+        <div class="paper-feed-scroll paper-feed-scroll--browser" tabindex="0">
+          {{- range $i, $item := $feed.items -}}
+          <section class="paper-feed-card" id="paper-{{ $i }}">
+            {{- with $item.title -}}
+            <h2 class="paper-feed-card__title">
+              {{- if $item.link -}}<a href="{{ $item.link | safeURL }}" rel="noopener noreferrer" target="_blank">{{ . }}</a>
+              {{- else -}}{{ . }}{{- end -}}
+            </h2>
+            {{- end -}}
+            {{- if or $item.first_author $item.last_author -}}
+            <p class="paper-feed-card__authors">
+              {{- if and $item.first_author $item.last_author -}}
+                {{- if eq $item.first_author $item.last_author -}}
+                  {{ $item.first_author }}
+                {{- else -}}
+                  {{ $item.first_author }} · {{ $item.last_author }}
+                {{- end -}}
+              {{- else if $item.first_author -}}
+                {{ $item.first_author }}
+              {{- else -}}
+                {{ $item.last_author }}
+              {{- end -}}
+            </p>
+            {{- end -}}
+            {{- partial "papers/item-bibliography.html" $item -}}
+            {{- with $item.image_url -}}
+            <figure class="paper-feed-card__figure">
+              <a href="{{ $item.link | safeURL }}" rel="noopener noreferrer" target="_blank">
+                <img src="{{ . | safeURL }}" alt="" loading="lazy" />
+              </a>
+            </figure>
+            {{- end -}}
+            {{- with $item.abstract -}}
+            {{- $abs := trim . " \n\t" -}}
+            {{- $absHTML := findRE `(?i)<\s*(?:p|div|img|a|span|cite|table|ul|ol|br|h[1-6]|section|article)\b` $abs 1 -}}
+            <div class="paper-feed-card__abstract">
+              {{- if or (strings.HasPrefix $abs "<") (gt (len $absHTML) 0) -}}
+                {{- $abs | safeHTML -}}
+              {{- else -}}
+                {{- range split . "\n\n" -}}
+                {{- $para := trim . " \n\t" -}}
+                {{- if $para -}}<p>{{ $para }}</p>{{ end -}}
+                {{- end -}}
+              {{- end -}}
+            </div>
+            {{- end -}}
+          </section>
+          {{- end -}}
+        </div>
+    {{- end -}}
+  </div>
+</article>
+{{- end -}}

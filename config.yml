@@ -72,6 +72,15 @@ params:
   description: "Research site for Jack Hellerstedt — scanning probe microscopy, metal-organic frameworks, and related work."
   author: jhellerstedt
 
+  # Curated paper RSS → data/papers.json via: python3 scripts/build_papers_data.py
+  # Override URL at build time: PAPERS_FEED_URL=https://... python3 scripts/build_papers_data.py
+  papersFeed:
+    url: ""
+    localDir: static/rss
+    # Same-origin path nginx proxies to https://pubs.acs.org/ (see docker/nginx-default.conf).
+    # Regenerate papers.json after changing. Leave empty to use link fallback for ACS figures.
+    acsImageProxyPath: "/_acs_proxy"
+
   defaultTheme: auto
   ShowShareButtons: false
   ShowReadingTime: false
