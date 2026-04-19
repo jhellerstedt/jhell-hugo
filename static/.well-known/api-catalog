@@ -1,0 +1,31 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://jhell.imipolex.biz/.well-known/api-catalog",
+      "item": [
+        { "href": "https://jhell.imipolex.biz/blog/index.xml" },
+        { "href": "https://jhell.imipolex.biz/index.xml" },
+        { "href": "https://jhell.imipolex.biz/index.json" },
+        { "href": "https://jhell.imipolex.biz/.well-known/health.json" }
+      ],
+      "service-desc": [
+        {
+          "href": "https://jhell.imipolex.biz/.well-known/openapi.yaml",
+          "type": "application/yaml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://jhell.imipolex.biz/feeds/",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://jhell.imipolex.biz/.well-known/health.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

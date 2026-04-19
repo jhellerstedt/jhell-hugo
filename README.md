@@ -66,6 +66,10 @@ rsync -avz --delete public/ user@server:/var/www/jhell.imipolex.biz/html/
 
 Use SSH keys, a deploy user with write access only to that tree, and reload or let nginx pick up new files. Configure TLS at the reverse proxy as usual. If you use **`acsImageProxyPath`** (for ACS figures on `/rss-browser/…`), add the **`/_acs_proxy/`** `location` block from **`docker/nginx-default.conf`** to the nginx instance that serves the static tree (or use the bundled Docker image, which includes it).
 
+### Markdown for Agents (`Accept: text/markdown`)
+
+The Docker image runs a small Node converter on `127.0.0.1:3000` and nginx routes HTML page requests (not `.xml`, `.css`, assets, etc.) there when the client sends an `Accept` header that includes `text/markdown`. Responses use **`Content-Type: text/markdown; charset=utf-8`**, **`x-markdown-tokens`** (rough size estimate), and **`Vary: Accept`**. For the same static tree on a host nginx without Docker, see **`docker/nginx-markdown-negotiation.conf`**. If the site sits behind **Cloudflare** with [Markdown for Agents](https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/) enabled on the zone, the edge can perform conversion instead—turn off one layer to avoid doing the same work twice.
+
 ## Curated paper RSS → `/feeds/`
 
 Optional RSS 2.0 exports (for example from an **llm-rss** workflow) can be dropped into **`static/rss/*.xml`**. They are copied to **`/rss/<filename>.xml`** on the built site.

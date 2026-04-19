@@ -1,3 +1,6 @@
+# Node (docker/markdown-server local install)
+docker/markdown-server/node_modules/
+
 # Hugo
 /public/
 /resources/_gen/

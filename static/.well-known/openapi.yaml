@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info:
+  title: jhell.imipolex.biz public HTTP interfaces
+  description: >
+    Machine-oriented endpoints for this static Hugo site (feeds, search index,
+    and optional HTML-as-Markdown when served behind the docker markdown proxy).
+  version: "1.0.0"
+servers:
+  - url: https://jhell.imipolex.biz
+paths:
+  /index.json:
+    get:
+      summary: Fuse.js site search index
+      responses:
+        "200":
+          description: JSON search index
+  /index.xml:
+    get:
+      summary: Home RSS feed
+      responses:
+        "200":
+          description: RSS XML
+  /blog/index.xml:
+    get:
+      summary: Blog RSS feed
+      responses:
+        "200":
+          description: RSS XML
+  /.well-known/health.json:
+    get:
+      summary: Site availability probe
+      responses:
+        "200":
+          description: Health JSON
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok

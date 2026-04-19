@@ -1,0 +1,16 @@
+{
+  "site": "https://jhell.imipolex.biz/",
+  "resources": {
+    "openApi": {
+      "href": "/.well-known/openapi.yaml",
+      "type": "application/vnd.oai.openapi;version=3.1"
+    },
+    "apiCatalog": {
+      "href": "/.well-known/api-catalog",
+      "type": "application/linkset+json"
+    },
+    "blogRss": { "href": "/blog/index.xml", "type": "application/rss+xml" },
+    "homeRss": { "href": "/index.xml", "type": "application/rss+xml" },
+    "siteSearchIndex": { "href": "/index.json", "type": "application/json" }
+  }
+}
