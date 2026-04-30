@@ -51,6 +51,8 @@ FILTERED_RSS_PREFIX = re.compile(
     r"^\s*filtered\s+rss\s*[-–—:]\s*(.+)\s*$",
     re.IGNORECASE,
 )
+OPENALEX_CONCEPT_MARKER = "— OpenAlex concept:"
+UNCATEGORIZED_CONCEPT = "Uncategorized"
 ARXIV_ABS_RE = re.compile(r"^https?://arxiv\.org/abs/([^/?#]+)")
 OG_IMAGE_RE = re.compile(
     r'(?is)<meta\s+[^>]*property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']'
@@ -364,6 +366,25 @@ def slugify(label: str) -> str:
     return (s[:80] if s else "feed")
 
 
+def extract_openalex_concept(channel_description: str) -> str:
+    """
+    Parse an optional OpenAlex concept embedded in the RSS channel description.
+
+    llm-rss formats this as:
+      "LLM-filtered feed (<id>) — OpenAlex concept: <Concept Name>"
+
+    If missing or empty, return a stable fallback category so Hugo templates can
+    group feeds without special casing None/empty strings.
+    """
+    s = (channel_description or "").strip()
+    if not s:
+        return UNCATEGORIZED_CONCEPT
+    if OPENALEX_CONCEPT_MARKER not in s:
+        return UNCATEGORIZED_CONCEPT
+    concept = s.split(OPENALEX_CONCEPT_MARKER, 1)[1].strip()
+    return concept if concept else UNCATEGORIZED_CONCEPT
+
+
 def parse_rss_bytes(
     data: bytes,
     source: str,
@@ -384,11 +405,18 @@ def parse_rss_bytes(
         raise ValueError(f"No channel in {source!r}")
 
     channel_title = ""
+    channel_link = ""
+    channel_description = ""
     for child in channel:
         tag = strip_ns(child.tag)
         if tag == "title":
             channel_title = elem_text(child).strip()
-            break
+        elif tag == "link":
+            channel_link = elem_text(child).strip()
+        elif tag == "description":
+            channel_description = elem_text(child).strip()
+
+    concept = extract_openalex_concept(channel_description)
 
     items_out: list[dict[str, Any]] = []
     enrich_authors = _get_env_int("PAPERS_ENRICH_AUTHORS", 1) != 0
@@ -443,6 +471,9 @@ def parse_rss_bytes(
     return {
         "id": fid,
         "channel_title": channel_title,
+        "channel_link": channel_link,
+        "channel_description": channel_description,
+        "concept": concept,
         "display_title": display_title,
         "source": source,
         "rss_href": rss_href,
