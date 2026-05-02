@@ -1,3 +1,11 @@
+{{- /*
+  /feeds/ groups rows by `category` from data/papers.json (scripts/build_papers_data.extract_feed_category).
+
+  llm-rss channel <description> may end with a fixed suffix after the em dash (U+2014):
+    " … — category: <token>"
+  (ASCII spaces as shown; see FEED_CATEGORY_MARKER in build_papers_data.py).
+  If that suffix is absent, the bucket is "Uncategorized". Do not use channel <link> for grouping.
+*/ -}}
 {{- /* hugo.Data exists from v0.156; site.Data keeps builds working on older Hugo (e.g. peaceiris/hugo:0.146). */ -}}
 {{- $papers := site.Data.papers -}}
 {{- if and $papers (gt (len $papers.feeds) 0) -}}
@@ -6,30 +14,31 @@
 {{- $scratch.Set "groups" (dict) -}}
 
 {{- range $papers.feeds -}}
-  {{- $concept := (.concept | default $uncat) | strings.TrimSpace -}}
-  {{- if not $concept -}}{{- $concept = $uncat -}}{{- end -}}
+  {{- $cat := (.category | default $uncat) | strings.TrimSpace -}}
+  {{- if not $cat -}}{{- $cat = $uncat -}}{{- end -}}
   {{- $groups := $scratch.Get "groups" -}}
-  {{- $existing := (index $groups $concept) | default (slice) -}}
+  {{- $existing := (index $groups $cat) | default (slice) -}}
   {{- $existing = $existing | append . -}}
-  {{- $scratch.SetInMap "groups" $concept $existing -}}
+  {{- $scratch.SetInMap "groups" $cat $existing -}}
 {{- end -}}
 
-{{- $concepts := slice -}}
+{{- $categories := slice -}}
 {{- range $k, $_ := ($scratch.Get "groups") -}}
-  {{- $concepts = $concepts | append $k -}}
+  {{- $categories = $categories | append $k -}}
 {{- end -}}
-{{- $concepts = sort $concepts -}}
-{{- if in $concepts $uncat -}}
+{{- $categories = sort $categories -}}
+{{- if in $categories $uncat -}}
   {{- $tmp := slice -}}
-  {{- range $concepts -}}
+  {{- range $categories -}}
     {{- if ne . $uncat -}}{{- $tmp = $tmp | append . -}}{{- end -}}
   {{- end -}}
-  {{- $concepts = $tmp | append $uncat -}}
+  {{- $categories = $tmp | append $uncat -}}
 {{- end -}}
 
-{{- range $ci, $concept := $concepts -}}
-  {{- $feeds := sort (index ($scratch.Get "groups") $concept) "channel_title" -}}
-  <h2>{{ $concept }}</h2>
+{{- range $ci, $cat := $categories -}}
+  {{- /* Within a category: stable order by channel <title> (fallback: empty sorts first). */ -}}
+  {{- $feeds := sort (index ($scratch.Get "groups") $cat) "channel_title" -}}
+  <h2>{{ $cat }}</h2>
   <ul class="rss-feed-list">
     {{- range $feeds -}}
       {{- $fallback := strings.TrimSpace (partial "papers/feed-label.html" .) -}}
