@@ -1,0 +1,31 @@
+{{- /*
+  Bucket label for /feeds grouping. Prefer channel <description> from each feed
+  (llm-rss: " … — category: <token>") so the page stays correct even if
+  data/papers.json has a stale .category. Falls back to .category, then
+  "Uncategorized". Must match delimiter logic in scripts/build_papers_data.py.
+*/ -}}
+{{- $desc := .channel_description | default "" | strings.TrimSpace -}}
+{{- $bucket := "" -}}
+{{- range slice " — category: " " — category:" -}}
+  {{- if and (not $bucket) $desc (strings.Contains $desc .) -}}
+    {{- $parts := split $desc . -}}
+    {{- if gt (len $parts) 1 -}}
+      {{- $tail := index $parts 1 | strings.TrimSpace -}}
+      {{- with findRE `^\S+` $tail -}}
+        {{- $bucket = index . 0 | strings.TrimSpace -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $bucket -}}
+  {{- with findRESubmatch `(?i)\s[—–\-]\s*category\s*:\s*(\S+)` $desc -}}
+    {{- $bucket = index (index . 0) 1 | strings.TrimSpace -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $bucket -}}
+  {{- $bucket = .category | default "" | strings.TrimSpace -}}
+{{- end -}}
+{{- if not $bucket -}}
+  {{- $bucket = "Uncategorized" -}}
+{{- end -}}
+{{- return $bucket -}}

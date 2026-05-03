@@ -1,10 +1,7 @@
 {{- /*
-  /feeds/ groups rows by `category` from data/papers.json (scripts/build_papers_data.extract_feed_category).
-
-  llm-rss channel <description> may end with a fixed suffix after the em dash (U+2014):
-    " … — category: <token>"
-  (ASCII spaces as shown; see FEED_CATEGORY_MARKER in build_papers_data.py).
-  If that suffix is absent, the bucket is "Uncategorized". Do not use channel <link> for grouping.
+  /feeds/ grouping: partial "papers/feed-category-bucket.html" prefers channel
+  <description> (" … — category: <token>") over data/papers.json .category so
+  RSS stays authoritative after deploy. See scripts/build_papers_data.py FEED_CATEGORY_MARKER.
 */ -}}
 {{- /* hugo.Data exists from v0.156; site.Data keeps builds working on older Hugo (e.g. peaceiris/hugo:0.146). */ -}}
 {{- $papers := site.Data.papers -}}
@@ -14,7 +11,7 @@
 {{- $scratch.Set "groups" (dict) -}}
 
 {{- range $papers.feeds -}}
-  {{- $cat := (.category | default $uncat) | strings.TrimSpace -}}
+  {{- $cat := partial "papers/feed-category-bucket.html" . -}}
   {{- if not $cat -}}{{- $cat = $uncat -}}{{- end -}}
   {{- $groups := $scratch.Get "groups" -}}
   {{- $existing := (index $groups $cat) | default (slice) -}}
