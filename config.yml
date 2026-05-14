@@ -26,6 +26,17 @@ minify:
   disableXML: true
   minifyOutput: true
 
+mediaTypes:
+  application/opml+xml:
+    suffixes:
+      - opml
+
+outputFormats:
+  OPML:
+    mediaType: application/opml+xml
+    isPlainText: true
+    notAlternative: true
+
 outputs:
   home:
     - HTML

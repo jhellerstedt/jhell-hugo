@@ -1,0 +1,65 @@
+{{- /* One OPML outline per category (mirrors llm-rss shortcode); only feeds with a subscriber XML URL. */ -}}
+{{- $papers := site.Data.papers -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>{{ .Title | html }}</title>
+    <dateCreated>{{ now.Format "Mon, 02 Jan 2006 15:04:05 MST" | html }}</dateCreated>
+  </head>
+  <body>
+{{- if and $papers (gt (len $papers.feeds) 0) -}}
+{{- $uncat := "Uncategorized" -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "groups" (dict) -}}
+{{- range $papers.feeds -}}
+  {{- $cat := partial "papers/feed-category-bucket.html" . -}}
+  {{- if not $cat -}}{{- $cat = $uncat -}}{{- end -}}
+  {{- $groups := $scratch.Get "groups" -}}
+  {{- $existing := (index $groups $cat) | default (slice) -}}
+  {{- $existing = $existing | append . -}}
+  {{- $scratch.SetInMap "groups" $cat $existing -}}
+{{- end -}}
+{{- $categories := slice -}}
+{{- range $k, $_ := ($scratch.Get "groups") -}}
+  {{- $categories = $categories | append $k -}}
+{{- end -}}
+{{- $categories = sort $categories -}}
+{{- if in $categories $uncat -}}
+  {{- $tmp := slice -}}
+  {{- range $categories -}}
+    {{- if ne . $uncat -}}{{- $tmp = $tmp | append . -}}{{- end -}}
+  {{- end -}}
+  {{- $categories = $tmp | append $uncat -}}
+{{- end -}}
+{{- range $categories -}}
+  {{- $cat := . -}}
+  {{- $feeds := sort (index ($scratch.Get "groups") $cat) "channel_title" -}}
+  {{- $withXml := slice -}}
+  {{- range $feeds -}}
+    {{- $sub := "" -}}
+    {{- with .rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+    {{- if and (not $sub) .source -}}
+      {{- if strings.HasPrefix .source "http" -}}{{- $sub = .source -}}{{- end -}}
+    {{- end -}}
+    {{- if $sub -}}{{- $withXml = $withXml | append . -}}{{- end -}}
+  {{- end -}}
+  {{- if gt (len $withXml) 0 -}}
+    <outline text="{{ $cat | html }}">
+      {{- range $withXml -}}
+        {{- $fallback := strings.TrimSpace (partial "papers/feed-label.html" .) -}}
+        {{- $label := (.channel_title | default "") | strings.TrimSpace -}}
+        {{- if not $label -}}{{- $label = $fallback -}}{{- end -}}
+        {{- $sub := "" -}}
+        {{- with .rss_href -}}{{- $sub = absURL . -}}{{- end -}}
+        {{- if and (not $sub) .source -}}
+          {{- if strings.HasPrefix .source "http" -}}{{- $sub = .source -}}{{- end -}}
+        {{- end -}}
+        {{- $browse := printf "/rss-browser/%s/" .id | absURL -}}
+      <outline text="{{ $label | html }}" title="{{ $label | html }}" type="rss" xmlUrl="{{ $sub | html }}" htmlUrl="{{ $browse | html }}"/>
+      {{- end -}}
+    </outline>
+  {{- end -}}
+{{- end -}}
+{{- end -}}
+  </body>
+</opml>
