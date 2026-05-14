@@ -51,6 +51,16 @@ FILTERED_RSS_PREFIX = re.compile(
     r"^\s*filtered\s+rss\s*[-–—:]\s*(.+)\s*$",
     re.IGNORECASE,
 )
+# llm-rss channel <description> manual category suffix (see layouts/shortcodes/llm-rss.html):
+#   "... — category: <token>"
+# Primary delimiter: ASCII space, U+2014 em dash, ASCII space, "category:", ASCII space.
+FEED_CATEGORY_MARKER = " — category: "
+UNCATEGORIZED_CATEGORY = "Uncategorized"
+# Tolerant: optional spaces around dash, "category:" case-insensitive, token is first non-whitespace run.
+RE_FEED_CATEGORY_SUFFIX = re.compile(
+    r"\s[—–\-]\s*category\s*:\s*(\S+)",
+    re.IGNORECASE,
+)
 ARXIV_ABS_RE = re.compile(r"^https?://arxiv\.org/abs/([^/?#]+)")
 OG_IMAGE_RE = re.compile(
     r'(?is)<meta\s+[^>]*property=["\']og:image["\'][^>]*content=["\']([^"\']+)["\']'
@@ -364,6 +374,38 @@ def slugify(label: str) -> str:
     return (s[:80] if s else "feed")
 
 
+def extract_feed_category(channel_description: str) -> str:
+    """
+    Parse optional manual category from llm-rss channel <description>.
+
+    With category:
+      "LLM-filtered feed (<group_slug>) — category: <token>"
+    Without (or explicit "no category" line without this suffix):
+      "LLM-filtered feed (<group_slug>) — no category"
+      → no " — category: " delimiter → Uncategorized.
+
+    Returns a non-empty bucket name for Hugo grouping (single-token categories
+    from llm-rss; we keep the first whitespace-delimited word defensively).
+    """
+    s = (channel_description or "").strip()
+    if not s:
+        return UNCATEGORIZED_CATEGORY
+
+    tail = ""
+    if FEED_CATEGORY_MARKER in s:
+        tail = s.split(FEED_CATEGORY_MARKER, 1)[1].strip()
+    else:
+        m = RE_FEED_CATEGORY_SUFFIX.search(s)
+        if m:
+            tail = m.group(1).strip()
+
+    if not tail:
+        return UNCATEGORIZED_CATEGORY
+    parts = tail.split()
+    token = parts[0] if parts else ""
+    return token if token else UNCATEGORIZED_CATEGORY
+
+
 def parse_rss_bytes(
     data: bytes,
     source: str,
@@ -384,11 +426,18 @@ def parse_rss_bytes(
         raise ValueError(f"No channel in {source!r}")
 
     channel_title = ""
+    channel_link = ""
+    channel_description = ""
     for child in channel:
         tag = strip_ns(child.tag)
         if tag == "title":
             channel_title = elem_text(child).strip()
-            break
+        elif tag == "link":
+            channel_link = elem_text(child).strip()
+        elif tag == "description":
+            channel_description = elem_text(child).strip()
+
+    category = extract_feed_category(channel_description)
 
     items_out: list[dict[str, Any]] = []
     enrich_authors = _get_env_int("PAPERS_ENRICH_AUTHORS", 1) != 0
@@ -443,6 +492,9 @@ def parse_rss_bytes(
     return {
         "id": fid,
         "channel_title": channel_title,
+        "channel_link": channel_link,
+        "channel_description": channel_description,
+        "category": category,
         "display_title": display_title,
         "source": source,
         "rss_href": rss_href,
