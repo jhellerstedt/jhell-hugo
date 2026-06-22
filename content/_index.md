@@ -62,7 +62,13 @@ title: "Home"
 
 
 
-<iframe height="454" width="300" frameborder="0" allowtransparency="true" scrolling="no" src="https://www.strava.com/athletes/53603359/latest-rides/3863c4dc8a32863234c27cb6d0bc8299d4090cce"></iframe>
+<h3 class="wp-block-heading">Exercise</h3>
+
+
+
+<ul class="wp-block-list">
+<li><a rel="noreferrer noopener" href="https://www.strava.com/athletes/53603359" target="_blank">strava</a></li>
+</ul>
 </div>
 
 
